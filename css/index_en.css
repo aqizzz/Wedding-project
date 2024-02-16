@@ -1,0 +1,41 @@
+/* reset layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* define standard variables */
+/*
+        iPhone 5S is an example of a Breakpoint 1 with 320px
+        iPhone 6+ is an example of a Breakpoint 2 with 414px
+        iPad Mini is an example of a Breakpoint 3 with 703px
+        iPad Air is an example of a Breakpoint 4 with 768px
+*/
+@media (max-width: 575px) {
+  .carousel .carousel-item {
+    height: 200px;
+  }
+}
+@media (min-width: 575px) {
+  .carousel .carousel-item {
+    height: 250px;
+  }
+}
+@media (min-width: 768px) {
+  .carousel .carousel-item {
+    height: 300px;
+  }
+}
+.carousel .carousel-item {
+  height: 300px;
+}
+.carousel .carousel-item:nth-child(1) {
+  background-image: url(images/catering_origin.jpg);
+}
+.carousel .carousel-item:nth-child(2) {
+  background-image: url();
+}
+.carousel .carousel-item:nth-child(3) {
+  background-image: url();
+}

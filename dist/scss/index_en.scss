@@ -1,0 +1,39 @@
+@charset "utf-8";
+@import './reset';
+@import './variables';
+
+
+.carousel {
+
+    @media (max-width:$mobile) {
+        .carousel-item {
+            height:200px;
+        }
+    }
+
+    @media (min-width:$mobile) {
+        .carousel-item {
+            height:250px;
+        }
+    }
+
+    @media (min-width:$tablet) {
+        .carousel-item {
+            height:300px;
+        }
+    }
+
+    .carousel-item {
+        height: 300px;
+    }
+    .carousel-item:nth-child(1) {
+        background-image: url(/images/catering_origin.jpg);
+    }
+    .carousel-item:nth-child(2) {
+        background-image: url();
+    }
+    .carousel-item:nth-child(3) {
+        background-image: url();
+    }
+    
+}
