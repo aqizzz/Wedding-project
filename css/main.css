@@ -1,0 +1,206 @@
+/* import partial files */
+/* reset layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* define standard variables */
+/*
+        iPhone 5S is an example of a Breakpoint 1 with 320px
+        iPhone 6+ is an example of a Breakpoint 2 with 414px
+        iPad Mini is an example of a Breakpoint 3 with 703px
+        iPad Air is an example of a Breakpoint 4 with 768px
+*/
+/* use the variables */
+body {
+  background: #fff;
+  color: black;
+  width: 100%;
+}
+
+.web-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px 0;
+}
+.web-header img {
+  width: 120px;
+}
+.web-header .nav {
+  align-self: last baseline;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+.web-header .nav .menu li {
+  display: inline-block;
+  margin-right: 20px;
+}
+.web-header .nav .menu li:last-child {
+  margin-right: 0;
+}
+.web-header .nav .menu li a {
+  text-decoration: none;
+  color: #e1a8b1;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+.web-header .nav .menu li a:hover {
+  color: #a8e1d8;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 10px;
+  width: 180px;
+}
+.search-bar input[type=text] {
+  flex: 1;
+  padding: 4px;
+  padding-left: 30px;
+  border: none;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  height: 30px;
+  width: 20%;
+}
+.search-bar img {
+  position: absolute;
+  margin-left: 10px;
+  width: 20px;
+}
+
+.language-selector {
+  position: fixed;
+  width: 100px;
+  height: 20px;
+  top: 30px;
+  right: 20px;
+  z-index: 999;
+}
+.language-selector a {
+  display: block;
+  text-decoration: none;
+  color: #e1a8b1;
+  font-size: 0.8rem;
+}
+
+.footer {
+  width: 100%;
+  background-color: #f0d3d8;
+}
+.footer .contact-info {
+  justify-content: center;
+  display: flex;
+  height: auto;
+  padding: 10px;
+}
+.footer .column {
+  margin: 0 8%;
+}
+.footer p {
+  margin-bottom: 0;
+  color: #444444;
+}
+.footer .copyright {
+  display: flex;
+  justify-content: center;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+.footer .social-media {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.footer .social-media img {
+  width: 35px;
+}
+.footer .social-media a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    padding-left: 40%;
+  }
+  .search-bar {
+    margin-left: 30px;
+    margin-top: 0;
+    padding-left: 0;
+    width: 65%;
+  }
+  .search-col {
+    height: 30px;
+  }
+  .dropbtn {
+    position: relative;
+    color: #e1a8b1;
+    background-color: #fff;
+    padding: 0;
+    font-size: 0.8rem;
+    border: none;
+    cursor: pointer;
+  }
+  .dropdown {
+    display: inline-block;
+    height: 30px;
+    justify-items: center;
+    padding-left: 45%;
+    width: 100%;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    font-size: 0.8rem;
+    min-width: 110px;
+    padding-left: 15px;
+  }
+  .dropdown-content a {
+    color: #e1a8b1;
+    padding: 0;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: #a8e1d8;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown:hover .dropbtn {
+    background-color: #e1a8b1;
+    color: #fff;
+  }
+}
+@media screen and (max-width: 575px) {
+  .search-bar {
+    padding-left: 30%;
+    width: 65%;
+  }
+  .language-selector {
+    width: 30px;
+    right: 5px;
+  }
+  .language-selector a {
+    color: transparent;
+    font-size: 0;
+    line-height: 0;
+  }
+  .language-selector a::after {
+    content: "Fr";
+    display: inline;
+    color: #e1a8b1;
+    font-size: 0.8rem;
+    line-height: initial;
+  }
+}/*# sourceMappingURL=main.css.map */
