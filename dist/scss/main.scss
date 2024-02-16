@@ -126,7 +126,7 @@ body {
         justify-content: center;
         font-size: size(mobile-menu);
         letter-spacing: 1px;
-        padding: 10px;
+        padding: 5px;
     }
 
     .social-media {
@@ -136,24 +136,13 @@ body {
         padding-bottom: 5px;
 
         img {
-            width: 35px;
+            width: 20px;
+            opacity: 0.7;
         }
         
         a {
             text-decoration: none;
             margin-right: 20px;
-        }
-
-        .bi-envelope-heart-fill {
-            fill: $footer-text-color; 
-        }
-    
-        .bi-facebook {
-            fill: $footer-text-color; 
-        }
-    
-        .bi-twitter {
-            fill: $footer-text-color; 
         }
     }
 

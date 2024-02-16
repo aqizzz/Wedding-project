@@ -113,7 +113,7 @@ body {
   justify-content: center;
   font-size: 0.8rem;
   letter-spacing: 1px;
-  padding: 10px;
+  padding: 5px;
 }
 .footer .social-media {
   display: flex;
@@ -122,20 +122,12 @@ body {
   padding-bottom: 5px;
 }
 .footer .social-media img {
-  width: 35px;
+  width: 20px;
+  opacity: 0.7;
 }
 .footer .social-media a {
   text-decoration: none;
   margin-right: 20px;
-}
-.footer .social-media .bi-envelope-heart-fill {
-  fill: #444444;
-}
-.footer .social-media .bi-facebook {
-  fill: #444444;
-}
-.footer .social-media .bi-twitter {
-  fill: #444444;
 }
 
 @media screen and (max-width: 768px) {
