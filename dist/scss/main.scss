@@ -1,0 +1,244 @@
+/* import partial files */
+@import './reset';
+@import './variables';
+
+
+/* use the variables */
+body {
+    background: $primary-color;
+    color: $text-color;
+    width: 100%;
+}
+
+@function weight($weight-name) {
+    @return map-get($font-weights, $weight-name);
+}
+
+@function size($size-name) {
+    @return map-get($font-size, $size-name);
+}
+
+.web-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px 0;
+
+    img {
+        width: 120px; 
+    }
+
+    .nav {
+        align-self: last baseline;
+        padding-bottom: 5px;
+        padding-left: 10px;
+      .menu {
+        li {
+          display: inline-block;
+          margin-right: 20px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          a {
+            text-decoration: none;
+            color: $accent-color;
+            font-weight: weight(regular);
+            font-size: size(menu);
+
+            &:hover {
+                color: $complementary-color;
+            }
+          }
+        }
+      }
+    }
+    
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    margin-left: 10px;
+    width: 180px;
+
+    input[type="text"] {
+        flex: 1;
+        padding: 4px;
+        padding-left: 30px; 
+        border: none;
+        outline: none;
+        border: 1px solid #ccc;
+        border-radius: 10px; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        height:30px; 
+        width: 20%;
+    }
+
+    img {
+        position: absolute; 
+        margin-left: 10px; 
+        width: 20px;
+    }
+
+}
+
+.language-selector {
+    position: fixed;
+    width: 100px;
+    height: 20px;
+    top: 30px;
+    right: 20px;
+    z-index: 999;
+
+    a {
+        display: block; 
+        text-decoration: none; 
+        color: $accent-color; 
+        font-size: size(mobile-menu);
+    }
+}
+
+.footer {
+    width:100%;
+    background-color: $footer-color;
+
+    .contact-info {
+        justify-content: center;
+        display: flex;
+        height:auto;
+        padding: 10px;
+    }
+
+    .column {
+        margin: 0 8%;
+    }
+
+    p {
+        margin-bottom: 0;
+        color:$footer-text-color;
+    }
+
+    .copyright {
+        display: flex;
+        justify-content: center;
+        font-size: size(mobile-menu);
+        letter-spacing: 1px;
+        padding: 5px;
+    }
+
+    .social-media {
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        padding-bottom: 5px;
+
+        img {
+            width: 20px;
+            opacity: 0.7;
+        }
+        
+        a {
+            text-decoration: none;
+            margin-right: 20px;
+        }
+    }
+
+
+}
+
+
+@media screen and (max-width: $tablet) {
+    .logo {
+        padding-left: 40%;
+    }
+    .search-bar {
+      margin-left: 30px;
+      margin-top: 0;
+      padding-left: 0;
+      width:65%;
+    }
+
+    .search-col {
+        height: 30px;
+    }
+
+    .dropbtn {
+        position: relative;
+        color: $accent-color;
+        background-color: $primary-color;
+        padding: 0;
+        font-size: size(mobile-menu);
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropdown {
+        display: inline-block;
+        height: 30px;
+        justify-items: center;
+        padding-left: 45%;
+        width: 100%;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        font-size: size(mobile-menu);
+        min-width: 110px;
+        // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding-left: 15px;
+
+        a {
+            color: $accent-color;
+            padding: 0;
+            text-decoration: none;
+            display: block;
+        }
+
+        a:hover {
+            background-color: #f1f1f1;
+            color: $complementary-color;
+        }
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    .dropdown:hover .dropbtn {
+        background-color: $accent-color;
+        color: $primary-color;
+    }
+}
+ 
+@media screen and (max-width: $mobile) {
+    .search-bar {
+        padding-left: 30%;
+        width:65%;
+    }
+
+    .language-selector {
+        width: 30px;
+        right: 5px;
+
+        a {
+            color: transparent;
+            font-size: 0; 
+            line-height: 0; 
+        }
+
+        a::after {
+            content: "Fr";
+            display: inline; 
+            color: $accent-color; 
+            font-size: size(mobile-menu); 
+            line-height: initial;
+        }
+    
+    }
+    
+}
