@@ -57,6 +57,31 @@ body {
     
 }
 
+.breadcrumb {
+    position: relative; 
+    left: 3%;
+    margin: 10px;
+    li {
+        display: inline-block;
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        a {
+          text-decoration: none;
+          color: $accent-color;
+          font-weight: weight(regular);
+          font-size: size(menu);
+
+          &:hover {
+              color: $complementary-color;
+          }
+        }
+      }
+}
+
 .search-bar {
     display: flex;
     align-items: center;

@@ -51,6 +51,28 @@ body {
   color: #a8e1d8;
 }
 
+.breadcrumb {
+  position: relative;
+  left: 3%;
+  margin: 10px;
+}
+.breadcrumb li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.breadcrumb li:last-child {
+  margin-right: 0;
+}
+.breadcrumb li a {
+  text-decoration: none;
+  color: #e1a8b1;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+.breadcrumb li a:hover {
+  color: #a8e1d8;
+}
+
 .search-bar {
   display: flex;
   align-items: center;
