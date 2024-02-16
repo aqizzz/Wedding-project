@@ -133,6 +133,7 @@ body {
         display: flex;
         justify-content: center;
         cursor: pointer;
+        padding-bottom: 5px;
 
         img {
             width: 35px;
@@ -140,8 +141,23 @@ body {
         
         a {
             text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .bi-envelope-heart-fill {
+            fill: $footer-text-color; 
+        }
+    
+        .bi-facebook {
+            fill: $footer-text-color; 
+        }
+    
+        .bi-twitter {
+            fill: $footer-text-color; 
         }
     }
+
+
 }
 
 
