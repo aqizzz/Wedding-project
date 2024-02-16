@@ -18,6 +18,11 @@ body {
     @return map-get($font-size, $size-name);
 }
 
+.custom-row-width {
+    width: 100%; 
+    margin: 0 auto; 
+  }
+
 .web-header {
     display: flex;
     justify-content: center;
@@ -195,7 +200,7 @@ body {
         color: $accent-color;
         background-color: $primary-color;
         padding: 0;
-        font-size: size(mobile-menu);
+        font-size: size(menu);
         border: none;
         cursor: pointer;
     }
@@ -206,6 +211,7 @@ body {
         justify-items: center;
         padding-left: 45%;
         width: 100%;
+        z-index: 999;
     }
     
     .dropdown-content {
@@ -242,8 +248,28 @@ body {
  
 @media screen and (max-width: $mobile) {
     .search-bar {
-        padding-left: 30%;
+        padding-left: 25%;
         width:65%;
+    }
+
+    .logo {
+        padding-left: 35%;
+    }
+
+    .dropbtn {
+        font-size: size(mobile-menu);
+    }
+
+    .dropdown {
+        padding-left: 40%;
+    }
+
+    .breadcrumb {
+        li {
+            a {
+                font-size: size(mobile-menu);
+            }
+        }
     }
 
     .language-selector {

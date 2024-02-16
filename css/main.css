@@ -20,6 +20,11 @@ body {
   width: 100%;
 }
 
+.custom-row-width {
+  width: 100%;
+  margin: 0 auto;
+}
+
 .web-header {
   display: flex;
   justify-content: center;
@@ -170,7 +175,7 @@ body {
     color: #e1a8b1;
     background-color: #fff;
     padding: 0;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     border: none;
     cursor: pointer;
   }
@@ -180,6 +185,7 @@ body {
     justify-items: center;
     padding-left: 45%;
     width: 100%;
+    z-index: 999;
   }
   .dropdown-content {
     display: none;
@@ -209,8 +215,20 @@ body {
 }
 @media screen and (max-width: 575px) {
   .search-bar {
-    padding-left: 30%;
+    padding-left: 25%;
     width: 65%;
+  }
+  .logo {
+    padding-left: 35%;
+  }
+  .dropbtn {
+    font-size: 0.8rem;
+  }
+  .dropdown {
+    padding-left: 40%;
+  }
+  .breadcrumb li a {
+    font-size: 0.8rem;
   }
   .language-selector {
     width: 30px;
