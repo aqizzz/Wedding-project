@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+.col img {
+    width: 13rem; 
+    height: 10rem;
+    box-shadow: 3px 4px 15px rgba(44, 44, 44, 0.5);
+    margin-bottom: 1rem;
+    border: 7px groove lightgray;
+    transition: all 1s ease;
+    transform: translate(10px, -10px);
+}
+.col img:hover {
+    transform: rotate(360deg);
+}
+.row {
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+p {
+    font-size: large;
+}
+.container .row .col  :first-child{
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
