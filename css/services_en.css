@@ -1,0 +1,102 @@
+/* reset layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* define standard variables */
+/*
+        iPhone 5S is an example of a Breakpoint 1 with 320px
+        iPhone 6+ is an example of a Breakpoint 2 with 414px
+        iPad Mini is an example of a Breakpoint 3 with 703px
+        iPad Air is an example of a Breakpoint 4 with 768px
+*/
+.directory {
+  margin-top: 50px;
+  padding-left: 160px;
+}
+.directory ul {
+  display: flex;
+  list-style-type: none;
+}
+.directory ul a {
+  text-decoration: none;
+  color: #e1a8b1;
+  padding: 0px 10px;
+  border-right: 1.5px solid #e1a8b1;
+}
+.directory ul li:last-child a {
+  border-right: none;
+}
+
+.servies {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+}
+.servies .row div {
+  height: 300px;
+}
+.servies .row div a {
+  position: relative;
+  display: block;
+  height: 150px;
+  border-radius: 10px;
+  background-size: cover;
+  transition: all 0.5s;
+}
+.servies .row div a::after {
+  position: absolute;
+  top: 33%;
+  left: 0px;
+  content: "";
+  width: 100%;
+  height: 33%;
+  background: rgba(255, 255, 255, 0.8);
+  color: #e1a8b1;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 50px;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.servies .row div a:hover {
+  transform: scale(1.1);
+}
+.servies .row div a:hover::after {
+  opacity: 1;
+}
+.servies .row div:nth-child(1) a {
+  background-image: url(/images/rental.jpg);
+}
+.servies .row div:nth-child(1) a::after {
+  content: "RENTALS";
+}
+.servies .row div:nth-child(2) a {
+  background-image: url(/images/catering.jpg);
+}
+.servies .row div:nth-child(2) a::after {
+  content: "CATERING";
+}
+.servies .row div:nth-child(3) a {
+  background-image: url(/images/planning.jpg);
+  background-position: -150px;
+}
+.servies .row div:nth-child(3) a::after {
+  content: "WEDDING PLANNING";
+}
+@media (max-width: 992px) {
+  .servies .row div a::after {
+    opacity: 1;
+  }
+  .servies .row div a:hover {
+    transform: scale(1);
+  }
+}
+@media (min-width: 992px) and (max-width: 1140px) {
+  .servies .row div a::after {
+    font-size: 16px;
+  }
+}

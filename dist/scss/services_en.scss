@@ -1,0 +1,122 @@
+@charset "utf-8";
+@import './reset';
+@import './variables';
+
+.directory {
+    margin-top: 50px;
+    padding-left: 160px;
+    
+
+    ul {
+        display: flex;
+        list-style-type: none;
+
+    a {
+        text-decoration: none;
+        color:$accent-color;
+        padding: 0px 10px;
+        border-right: 1.5px solid $accent-color;
+    }
+
+    li:last-child a {
+        border-right: none;
+    }
+}
+
+}  
+
+.servies {
+
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    .row {
+        div {
+            height:300px;
+            a {
+                position: relative;
+                display: block;
+                height: 150px;
+                border-radius: 10px;
+                background-size: cover;
+                transition: all 0.5s;
+
+                &::after {
+                    position: absolute;
+                    top:33%;
+                    left:0px;
+                    content: '';
+                    width: 100%;
+                    height: 33%;
+                    background: rgba(255, 255, 255, 0.8);
+
+                    color:$accent-color;
+                    font-weight: bold;
+                    font-size: 22px;
+                    line-height: 50px;
+                    opacity: 0;
+                    transition: all 0.5s;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                &:hover::after {
+                    opacity: 1;
+                }
+
+            }
+
+            &:nth-child(1) a {
+                background-image: url(/images/rental.jpg);
+                &::after {
+                    content:'RENTALS';     
+                }
+                
+            }
+
+            &:nth-child(2) a {
+                background-image: url(/images/catering.jpg);
+                &::after {
+                    content:'CATERING';     
+                }
+                
+            }
+
+            &:nth-child(3) a {
+                background-image: url(/images/planning.jpg);
+                background-position: -150px;
+                &::after {
+                    content:'WEDDING PLANNING';     
+                }
+                
+            }
+
+
+        }
+        
+    }
+
+    @media (max-width:992px) {
+        .row div a::after {
+            opacity: 1;
+        }
+
+        .row div a:hover {
+            transform: scale(1);
+        }
+    }
+
+    @media (min-width:992px) and (max-width:1140px) {
+
+        .row div a::after {
+            font-size: 16px;
+        }
+        // .row div:nth-child(3) a::after {
+        //     content:'PLANNING';
+        // }
+    }
+
+}
