@@ -188,6 +188,11 @@ body {
 
 }
 
+@media screen and (min-width: $tablet) {
+    .logo {
+        padding-left: 20%;
+    }
+}
 
 @media screen and (max-width: $tablet) {
     .logo {

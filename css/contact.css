@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+
+fieldset {
+  border-radius: 20px;
+  margin: 10px;
+  padding: 5px;
+}
+
+
+legend {
+  display: flex;
+  justify-content: center;
+  color: #e1a8b1;
+}
+
+td {
+  padding: 5px;
+}
+
+#send {
+  margin: 20px;
+  border-color: #f0d3d8;
+  border-radius: 10px; 
+  padding: 5px 10px; 
+  background-color: #f0d3d8; 
+  width: 150px;
+  color: #fff;
+}
+
+#send:hover {
+  background-color: #e1a8b1; 
+}
+
+#send a {
+  color: #fff;
+  text-decoration: none;
+  
+}
+
+
+#appointment {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+}
+
+.contact-main a {
+  color:#e1a8b1;
+}
+
+.contact-main a:hover {
+  color:#a8e1d8;
+}
