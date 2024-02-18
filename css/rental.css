@@ -1,8 +1,10 @@
 @charset "utf-8";
 
-.col img {
-    width: 20rem; 
-    height: 20rem;
+.col-md-6 img {
+    width: 15rem;
+    height: 15rem;
+    max-width: 100%;
+    overflow: hidden;
     box-shadow: 3px 4px 15px rgba(44, 44, 44, 0.5);
     margin-bottom: 1rem;
     border: 7px outset lightgray;
@@ -10,18 +12,34 @@
     transform: translate(10px, -10px);
 }
 
-.col img:hover {
+.col-md-6 img:hover {
     transform: rotate(360deg);
 }
 
-.col p{
+.col-md-6 p{
     margin-right: 3rem;
     text-align: left;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: large;
 }
 
-.row {
+.rentals.row {
     margin-bottom: 2rem;
     align-items: center;
+}
+
+.rentals {
+    margin-top: 80px;
+}
+
+@media screen and (min-width: 768px) and (max-width:992px){
+
+    .col-md-6 img {
+        width: 10rem;
+        height: 10rem;
+    }
+    
+    .rentals {
+        font-size: small;
+    }
 }

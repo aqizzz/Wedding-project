@@ -17,8 +17,26 @@
     align-items: center;
 }
 
-p {
-    font-size: large;
+h2 {
+    font-family: "Dancing Script";
+}
+
+@media screen and (min-width: 768px) {
+    p,h2 {
+        font-size: large;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    p,h2 {
+        font-size: small;
+    }
+}
+
+@media screen and (max-width:575px) {
+    .col img {
+        transform: scale(0.8);
+    }
 }
 .container .row .col  :first-child{
     font-family:Verdana, Geneva, Tahoma, sans-serif
