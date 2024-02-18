@@ -70,15 +70,16 @@
   margin: 30px auto;
 }
 .welcome p:first-child {
-  font-size: 26px;
+  font-size: 1.5rem;
   color: #e1a8b1;
 }
 .welcome h1 {
   margin-bottom: 20px;
   color: #e1a8b1;
   font-family: "Dancing Script";
-  font-weight: 700;
+  font-weight: weight(bold);
 }
 .welcome p:last-child {
   font-family: "Dancing Script";
-}/*# sourceMappingURL=index_en.css.map */
+  font-size: 1.2rem;
+}
