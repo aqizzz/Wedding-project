@@ -5,8 +5,6 @@
 
 .carousel {
 
-    
-
     .carousel-item {
         background-size: cover;
 
@@ -79,7 +77,7 @@
     margin:30px auto;
 
     p:first-child {
-        font-size: 26px;
+        font-size: 1.5rem;
         color: $accent-color;
     }
 
@@ -87,11 +85,12 @@
         margin-bottom:20px;
         color: $accent-color;
         font-family: "Dancing Script";
-        font-weight: 700;
+        font-weight: weight(bold);
     }
 
     p:last-child {
         font-family: "Dancing Script";
+        font-size: 1.2rem;
     }
 }
 

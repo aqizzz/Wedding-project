@@ -12,22 +12,18 @@
         iPad Mini is an example of a Breakpoint 3 with 703px
         iPad Air is an example of a Breakpoint 4 with 768px
 */
-.directory {
+.direc {
   margin-top: 50px;
   padding-left: 160px;
 }
-.directory ul {
+.direc ul {
   display: flex;
   list-style-type: none;
 }
-.directory ul a {
+.direc ul li a {
   text-decoration: none;
   color: #e1a8b1;
-  padding: 0px 10px;
-  border-right: 1.5px solid #e1a8b1;
-}
-.directory ul li:last-child a {
-  border-right: none;
+  padding: 0px 5px;
 }
 
 .servies {
@@ -45,6 +41,8 @@
   height: 150px;
   border-radius: 10px;
   background-size: cover;
+  border: solid 3px #e1a8b1;
+  box-shadow: 2px 2px 3px #484747;
   transition: all 0.5s;
 }
 .servies .row div a::after {
