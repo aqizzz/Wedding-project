@@ -22,6 +22,35 @@ body {
     @return map-get($font-size, $size-name);
 }
 
+@mixin fontsize($fontsize) {
+    font-size: $fontsize;
+}
+
+.directory {
+    position: relative; 
+    left: 12%;
+    margin: 10px;
+
+    & ul {
+        display: flex;
+        list-style-type: none;
+    
+        & a {
+            text-decoration: none;
+            color: #e1a8b1;
+            padding: 0px 10px;
+            border-right: 1.5px solid #e1a8b1;
+            &:hover {
+                color: $complementary-color;
+            }
+        }
+
+        & li:last-child a {
+            border-right: none;
+        }
+    }
+}
+
 .custom-row-width {
     width: 100%; 
     margin: 0 auto; 
@@ -41,11 +70,11 @@ body {
     .nav {
         align-self: last baseline;
         padding-bottom: 5px;
-        padding-left: 10px;
+        padding-left: 5px;
       .menu {
         li {
           display: inline-block;
-          margin-right: 20px;
+          margin-right: 10px;
 
           &:last-child {
             margin-right: 0;
@@ -55,7 +84,7 @@ body {
             text-decoration: none;
             color: $accent-color;
             font-weight: weight(regular);
-            font-size: size(menu);
+
 
             &:hover {
                 color: $complementary-color;
@@ -65,31 +94,6 @@ body {
       }
     }
     
-}
-
-.breadcrumb {
-    position: relative; 
-    left: 3%;
-    margin: 10px;
-    li {
-        display: inline-block;
-        margin-right: 10px;
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        a {
-          text-decoration: none;
-          color: $accent-color;
-          font-weight: weight(regular);
-          font-size: size(menu);
-
-          &:hover {
-              color: $complementary-color;
-          }
-        }
-      }
 }
 
 .text-right {
@@ -194,6 +198,18 @@ body {
     }
 }
 
+@media screen and (min-width: 992px) {
+    .menu li a {
+        @include fontsize(map-get($font-size, "menu"));
+    }
+}
+
+@media screen and (min-width: $tablet) and (max-width: 992px) {
+    .menu li a {
+        @include fontsize(0.9rem);
+    }
+}
+
 @media screen and (max-width: $tablet) {
     .logo {
         padding-left: 40%;
@@ -226,6 +242,15 @@ body {
         padding-left: 45%;
         width: 100%;
         z-index: 999;
+
+        &:hover .dropdown-content {
+            display: block;
+        }
+        
+        &:hover .dropbtn {
+            background-color: $accent-color;
+            color: $primary-color;
+        }
     }
     
     .dropdown-content {
@@ -248,15 +273,6 @@ body {
             background-color: #f1f1f1;
             color: $complementary-color;
         }
-    }
-    
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-    
-    .dropdown:hover .dropbtn {
-        background-color: $accent-color;
-        color: $primary-color;
     }
 }
  
