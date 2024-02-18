@@ -46,8 +46,16 @@ input {
   border-bottom: 1.5px solid #e1a8b1;
 }
 
+input:focus {
+  outline: none;
+}
+
 textarea {
   border: 1.5px solid #e1a8b1;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 #send {
