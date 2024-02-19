@@ -233,13 +233,14 @@ body {
         font-size: size(menu);
         border: none;
         cursor: pointer;
+        min-width: 130px;
     }
     
     .dropdown {
         display: inline-block;
         height: 30px;
         justify-items: center;
-        padding-left: 45%;
+        padding-left: 40%;
         width: 100%;
         z-index: 999;
 
@@ -258,9 +259,9 @@ body {
         position: absolute;
         background-color: $accent-color;
         font-size: size(mobile-menu);
-        min-width: 110px;
+        min-width: 130px;
         // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        padding-left: 15px;
+        padding-left: 40px;
 
         a {
             color: white;
@@ -290,7 +291,7 @@ body {
     }
 
     .dropdown {
-        padding-left: 40%;
+        padding-left:33%;
     }
 
     .breadcrumb {

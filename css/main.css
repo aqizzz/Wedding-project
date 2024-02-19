@@ -200,12 +200,13 @@ body h1, body h2, body h3, body h4 {
     font-size: 1.1rem;
     border: none;
     cursor: pointer;
+    min-width: 130px;
   }
   .dropdown {
     display: inline-block;
     height: 30px;
     justify-items: center;
-    padding-left: 45%;
+    padding-left: 40%;
     width: 100%;
     z-index: 999;
   }
@@ -221,8 +222,8 @@ body h1, body h2, body h3, body h4 {
     position: absolute;
     background-color: #e1a8b1;
     font-size: 0.8rem;
-    min-width: 110px;
-    padding-left: 15px;
+    min-width: 130px;
+    padding-left: 40px;
   }
   .dropdown-content a {
     color: white;
@@ -246,7 +247,7 @@ body h1, body h2, body h3, body h4 {
     font-size: 0.8rem;
   }
   .dropdown {
-    padding-left: 40%;
+    padding-left: 33%;
   }
   .breadcrumb li a {
     font-size: 0.8rem;
