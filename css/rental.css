@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 .col img {
-    width: 20rem; 
-    height: 20rem;
+    width: 15rem; 
+    height: 15rem;
     box-shadow: 3px 4px 15px rgba(44, 44, 44, 0.5);
     margin-bottom: 1rem;
     border: 7px outset lightgray;
