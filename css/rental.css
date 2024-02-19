@@ -1,10 +1,8 @@
 @charset "utf-8";
 
-.col-md-6 img {
-    width: 15rem;
-    height: 15rem;
-    max-width: 100%;
-    overflow: hidden;
+.col img {
+    width: 20rem; 
+    height: 20rem;
     box-shadow: 3px 4px 15px rgba(44, 44, 44, 0.5);
     margin-bottom: 1rem;
     border: 7px outset lightgray;
@@ -12,34 +10,59 @@
     transform: translate(10px, -10px);
 }
 
-.col-md-6 img:hover {
+.col img:hover {
     transform: rotate(360deg);
 }
 
-.col-md-6 p{
+.col p{
     margin-right: 3rem;
     text-align: left;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: large;
 }
 
-.rentals.row {
+.row {
     margin-bottom: 2rem;
     align-items: center;
 }
 
-.rentals {
-    margin-top: 80px;
+.top {
+    border: 7px double lightgrey; 
+    background: gray; 
+    border-radius: 40%; 
+    padding: 1rem 2rem 1rem 2rem;
+    float: left;
+    box-shadow: 2px 4px 15px gray;
+    transition: all 1s ease;
+    transform: translate(10px, -10px);
+    font-size: larger;
+    color:white;
+    text-decoration-line: none;
 }
 
-@media screen and (min-width: 768px) and (max-width:992px){
+.top:hover {
+    color: rgb(212, 181, 205);
+    transform: rotateY(360deg);
 
-    .col-md-6 img {
-        width: 10rem;
-        height: 10rem;
+}
+
+@media only screen and (max-width: 414px) {
+    .col img {
+        width: 11rem;
+        height: 11rem;
     }
-    
-    .rentals {
-        font-size: small;
+}
+
+@media only screen and (min-width: 415px) and (max-width: 767px) {
+    .col img {
+        width: 15rem;
+        height: 15rem;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .col img {
+        width: 20rem; 
+        height: 20rem;
     }
 }
