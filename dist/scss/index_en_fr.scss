@@ -9,14 +9,14 @@
         background-size: cover;
 
         &:nth-child(1) {
-            background-image: url(/images/ss1.jpg);
+            background-image: url(../images/ss1.jpg);
         }
             
         &:nth-child(2) {
-            background-image: url(/images/ss2.JPG);
+            background-image: url(../images/ss2.JPG);
         }
         &:nth-child(3) {
-            background-image: url(/images/ss3.JPG);
+            background-image: url(../images/ss3.JPG);
         }
     }
 

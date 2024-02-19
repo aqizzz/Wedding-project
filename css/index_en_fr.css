@@ -16,13 +16,13 @@
   background-size: cover;
 }
 .carousel .carousel-item:nth-child(1) {
-  background-image: url(/images/ss1.jpg);
+  background-image: url(../images/ss1.jpg);
 }
 .carousel .carousel-item:nth-child(2) {
-  background-image: url(/images/ss2.JPG);
+  background-image: url(../images/ss2.JPG);
 }
 .carousel .carousel-item:nth-child(3) {
-  background-image: url(/images/ss3.JPG);
+  background-image: url(../images/ss3.JPG);
 }
 @media (max-width: 575px) {
   .carousel .carousel-item {
@@ -88,4 +88,4 @@
   .welcome p:last-child {
     font-size: 1.5rem;
   }
-}
+}/*# sourceMappingURL=index_en_fr.css.map */
