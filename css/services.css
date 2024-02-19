@@ -72,13 +72,13 @@
   opacity: 1;
 }
 .servies .row div:nth-child(1) a {
-  background-image: url(/images/rental.jpg);
+  background-image: url(../images/rental.jpg);
 }
 .servies .row div:nth-child(2) a {
-  background-image: url(/images/catering1.png);
+  background-image: url(../images/catering1.png);
 }
 .servies .row div:nth-child(3) a {
-  background-image: url(/images/planning.png);
+  background-image: url(../images/planning.png);
 }
 @media (max-width: 992px) {
   .servies .row div a h1 {
