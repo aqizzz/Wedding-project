@@ -23,47 +23,18 @@
     @media (max-width:$mobile) {
         .carousel-item {
             height:300px;
-
-            // &:nth-child(2) {
-            //     background-position: 0 -80px;
-            // }
-            // &:nth-child(3) {
-            //     background-position: 0 -100px;
-            // }
         }
-          
     }
 
     @media (min-width:$mobile) {
         .carousel-item {
             height:400px;
-
-            // &:nth-child(1) {
-            //     background-position: 0 -80px;
-            // }
-            // &:nth-child(2) {
-            //     background-position: 0 -80px;
-            // }
-            // &:nth-child(3) {
-            //     background-position: 0 -100px;
-            // }
         }
     }
 
     @media (min-width:$tablet) {
         .carousel-item {
             height:500px;
-
-            // &:nth-child(1) {
-            //     background-position: 0 -300px;
-            // }
-                
-            // &:nth-child(2) {
-            //     background-position: 0 -280px;
-            // }
-            // &:nth-child(3) {
-            //     background-position: 0 -280px;
-            // }
         }
     }
     
