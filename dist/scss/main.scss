@@ -256,21 +256,20 @@ body {
     .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #f9f9f9;
+        background-color: $accent-color;
         font-size: size(mobile-menu);
         min-width: 110px;
         // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         padding-left: 15px;
 
         a {
-            color: $accent-color;
+            color: white;
             padding: 0;
             text-decoration: none;
             display: block;
         }
 
         a:hover {
-            background-color: #f1f1f1;
             color: $complementary-color;
         }
     }
@@ -313,13 +312,19 @@ body {
         }
 
         a::after {
-            content: "Fr";
             display: inline; 
             color: $accent-color; 
             font-size: size(mobile-menu); 
             line-height: initial;
         }
-    
+    }
+
+    [lang="fr"] .language-selector a::after {
+        content: "En";
     }
     
+
+    [lang="en"] .language-selector a::after {
+        content: "Fr";
+    }
 }

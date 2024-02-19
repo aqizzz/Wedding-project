@@ -219,19 +219,18 @@ body h1, body h2, body h3, body h4 {
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #e1a8b1;
     font-size: 0.8rem;
     min-width: 110px;
     padding-left: 15px;
   }
   .dropdown-content a {
-    color: #e1a8b1;
+    color: white;
     padding: 0;
     text-decoration: none;
     display: block;
   }
   .dropdown-content a:hover {
-    background-color: #f1f1f1;
     color: #a8e1d8;
   }
 }
@@ -262,10 +261,15 @@ body h1, body h2, body h3, body h4 {
     line-height: 0;
   }
   .language-selector a::after {
-    content: "Fr";
     display: inline;
     color: #e1a8b1;
     font-size: 0.8rem;
     line-height: initial;
+  }
+  [lang=fr] .language-selector a::after {
+    content: "En";
+  }
+  [lang=en] .language-selector a::after {
+    content: "Fr";
   }
 }/*# sourceMappingURL=main.css.map */
