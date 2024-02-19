@@ -1,0 +1,30 @@
+.about a img {
+  width: 180px; 
+  border-radius: 250px;
+  margin: 30px;
+  box-shadow: 
+  0 0 10px 5px rgba(0, 0, 0, 0.15)
+  ;
+}
+
+.about a {
+  text-decoration: none;
+}
+
+.about {
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 992px) {
+  .about a img {
+    width: 140px;
+    margin: 20px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .about a img {
+    width: 100px;
+    margin: 10px;
+  }
+}
