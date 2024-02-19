@@ -1,0 +1,16 @@
+.about a img {
+  width: 180px; 
+  border-radius: 250px;
+  margin: 30px;
+  box-shadow: 
+  0 0 10px 5px rgba(0, 0, 0, 0.15)
+  ;
+}
+
+.about a {
+  text-decoration: none;
+}
+
+.about {
+  margin-bottom: 50px;
+}
