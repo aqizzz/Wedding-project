@@ -71,7 +71,7 @@
     h1 {
         color: $accent-color;
         font-family: "Dancing Script";
-        font-weight: weight(bold);
+        font-weight: map-get($font-weights, "bold");
     }
 
     p:last-child {

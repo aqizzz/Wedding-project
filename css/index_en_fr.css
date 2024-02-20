@@ -66,7 +66,7 @@
 .welcome h1 {
   color: #e1a8b1;
   font-family: "Dancing Script";
-  font-weight: weight(bold);
+  font-weight: 700;
 }
 .welcome p:last-child {
   font-family: "Dancing Script";
@@ -103,4 +103,4 @@
   .welcome p:last-child {
     font-size: 1.5rem;
   }
-}
+}/*# sourceMappingURL=index_en_fr.css.map */
