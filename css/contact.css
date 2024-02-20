@@ -108,7 +108,7 @@ textarea:focus {
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  margin: 10px 30px;
+  margin: 0 30px;
   font-weight: 300;
 }
 
@@ -141,7 +141,7 @@ textarea:focus {
 }
 
 .shadow_img {
-  filter: drop-shadow(15px 15px 5px #000) opacity(50%);
+  filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5))opacity(80%);
   border: 0;
 }
 
@@ -150,3 +150,24 @@ textarea:focus {
   font-weight: 300;
 }
 
+.angled-135 {
+  background-color:rgba(252,246,247, 0);
+  animation: fadeIn 3s forwards;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%, transparent 75%, transparent);
+}
+
+@keyframes fadeIn {
+  from {
+      background-color: rgba(252,246,247, 0);
+  }
+  to {
+      background-color: rgba(252,246,247, 1);
+  }
+}
+
+.stripes {
+
+  background-size: 80px 80px; 
+
+  z-index: 0;
+}
