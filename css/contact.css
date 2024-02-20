@@ -84,6 +84,25 @@ textarea:focus {
   justify-content: center;
 }
 
+
+#balloon {
+  animation: balloonAnimation 5s infinite;
+    
+}
+
+@keyframes balloonAnimation {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  
+}
 .contact-main {
   display: flex;
   align-items: center;
