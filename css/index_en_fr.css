@@ -26,16 +26,31 @@
 }
 @media (max-width: 575px) {
   .carousel .carousel-item {
+    background-position: -250px;
     height: 300px;
   }
 }
 @media (min-width: 575px) {
   .carousel .carousel-item {
-    height: 400px;
+    background-position: -200px;
+    height: 330px;
   }
 }
 @media (min-width: 768px) {
   .carousel .carousel-item {
+    background-position: -100px;
+    height: 360px;
+  }
+}
+@media (min-width: 1200px) {
+  .carousel .carousel-item {
+    background-position: -50px;
+    height: 450px;
+  }
+}
+@media (min-width: 1400px) {
+  .carousel .carousel-item {
+    background-position: 0px;
     height: 500px;
   }
 }
@@ -88,4 +103,4 @@
   .welcome p:last-child {
     font-size: 1.5rem;
   }
-}/*# sourceMappingURL=index_en_fr.css.map */
+}

@@ -22,18 +22,36 @@
 
     @media (max-width:$mobile) {
         .carousel-item {
+            background-position: -250px;
             height:300px;
         }
     }
 
     @media (min-width:$mobile) {
         .carousel-item {
-            height:400px;
+            background-position: -200px;
+            height:330px;
         }
     }
 
     @media (min-width:$tablet) {
         .carousel-item {
+            background-position: -100px;
+            height:360px;
+        }
+    }
+
+
+    @media (min-width:1200px) {
+        .carousel-item {
+            background-position: -50px;
+            height:450px;
+        }
+    }
+
+    @media (min-width:1400px) {
+        .carousel-item {
+            background-position: 0px;
             height:500px;
         }
     }
