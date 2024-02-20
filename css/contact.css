@@ -1,13 +1,11 @@
 @charset "utf-8";
 
-
 fieldset {
   border-radius: 20px;
   margin: 10px;
   padding: 5px;
   font-weight: 300;
 }
-
 
 legend {
   display: flex;

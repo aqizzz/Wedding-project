@@ -10,12 +10,6 @@
     transform: translate(10px, -10px);
 }
 
-.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    display: inline-block;
-}
 .col img:hover {
     transform: rotate(360deg);
 }

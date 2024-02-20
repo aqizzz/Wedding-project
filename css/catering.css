@@ -17,19 +17,10 @@
     align-items: center;
 }
 
-p {
-    font-size: large;
-}
-.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    display: inline-block;
-    width: 100%;
-}
-.col{
-    flex-grow: 15;
-    margin-bottom: 1%;
+
+ .col  :first-child{
+    font-family: "Dancing Script";
+    font-weight: bold;
 }
 
 .top {
@@ -45,13 +36,10 @@ p {
     color:white;
     text-decoration-line: none;
 }
-
 .top:hover {
     color: rgb(212, 181, 205);
     transform: rotateY(360deg);
-
 }
-
 
 @media only screen and (max-width: 414px) {
     .col img {
@@ -60,14 +48,18 @@ p {
     }
     
     .col h2 {
-        font-size: small;
+        font-size: medium;
     }
-    
+
     .col p {
         font-size: xx-small;
     }
     .top {
         font-size: xx-small;
+    }
+
+    .info p {
+        font-size: x-small;
     }
 }
 
@@ -78,30 +70,27 @@ p {
     }
     
     .col h2 {
-        font-size: medium;
+        font-size: large;
     }
-    
+
     .col  {
-        font-size: x-small;
+        font-size: small;
     }
     .top {
-        font-size: x-small;
+        font-size: small;
+    }
+
+    .info p {
+        font-size: small;
     }
 }
 
 @media only screen and (min-width: 768px) {
     .col img {
-         width: 70%;
-        height: 70%;
+         width: 50%;
+        height: 50%;
     }
-    
-    .col h4 {
+    p {
         font-size: large;
-    }
-    .col  {
-        font-size: small;
-    }
-    .top {
-        font-size: small;
     }
 }

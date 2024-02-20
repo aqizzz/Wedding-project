@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- 
+name: ==Team 1== Maha Abbadi, Leah Teresa Yapp, Fei Li, Linlin Xie 
+Current Date: Feb 19 2024
+File name: Catering page
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +14,9 @@
     <link rel="stylesheet" href="css/main.css" >
     <link rel="stylesheet" href="css/catering.css" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon_io/favicon.ico">
@@ -26,11 +34,11 @@
     <a href="catering_fr.html" hreflang="fr" >Francais</a>
   </div>
 
-  <div class="container web-header" id="list-item-1">
-    <div class="row align-items-center">
+  <div class="container-xl web-header">
+    <div class="row align-items-center custom-row-width">
       <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <div class="logo">
-          <img src="/images/logo.png" alt="Sweet Symphony">
+          <img src="images/logo.png" alt="Sweet Symphony">
         </div> 
       </div>
       <div class="d-none d-md-block col-sm-6 col-md-8 col-lg-7 nav">
@@ -50,30 +58,30 @@
             <a href="services_en.html">SERVICES</a>
             <a href="gallery.html">GALLERY</a>
             <a href="about.html">ABOUT US</a>
-            <a href="contact.html">CONTACT US</a>
+            <a href="contact.html">CONTACT</a>
           </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-2 col-lg-3 search-col">
         <div class="search-bar">
-          <img src="/images/magnifier.png" alt="Search"> 
+          <img src="images/magnifier.png" alt="Search"> 
           <input id="searchInput" type="text" placeholder="Search...">
         </div> 
       </div>
     </div>
   </div>
    
-     <div class="directory">
-    <ul class="breadcrumb" style="position: relative; left: 2%;" >
-        <li><a href="index_en.html">Home</a></li>
-        <li><a href="services_en.html">| Services</a></li>
-        <li><a href="catering.html">| Catering</a></li>
+  <div class="directory">
+    <ul>
+      <li><a href="index_en.html">Home</a></li>
+      <li><a href="services_en.html">Services</a></li>
+      <li><a href="catering.html">Catering</a></li>
     </ul>
-     </div>
+  </div>
     
-    <div class="container text-center">
+    <div class="container text-center catering">
         <div class="row" > 
-            <div class="col">
+            <div class="col-md-12 col-lg-6 info">
                 <p >
                   <b >Fully Customize your Menu for your Special Day.</b>
                   <br>
@@ -82,17 +90,14 @@
                   <b>$74.5 per person for 4 course meal</b>
                 </p>
             </div>
-            <div class="col">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
-            <div class="col">
+            <div class="col-lg-6">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
         </div>
 
         <div class="row">
       
-            <div class="col">
+            <div class="col-lg-3">
                 &nbsp;
             </div>      
             <div class="col">
@@ -134,7 +139,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-lg-3">
                 &nbsp;
             </div>      
             
@@ -164,7 +169,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-lg-3">
                 &nbsp;
             </div>      
             <div class="col">
@@ -194,7 +199,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-lg-3">
                 &nbsp;
             </div>      
             <div class="col">
@@ -216,7 +221,7 @@
                 
             </div>
             <div >
-              <a  class= "top" href="#list-item-1">
+              <a  class= "top" href="#">
               <b >Top</b></a>
             </div>
         </div>
@@ -224,41 +229,41 @@
     </div>
 
     <footer class="footer">
-        <div class="contact-info">
-          <div class="column">
-            <p><strong>Address:</strong></p>
-            <p>123 Main St.</p>
-            <p>Montreal, QC</p>
-            <p>Y7K9L3</p>
-          </div>
-          <div class="column">
-            <p><strong>Phone:</strong></p>
-            <p>123-456-78890</p>
-          </div>
-          <div class="column">
-            <p><strong>Opening Hours:</strong></p>
-            <p>Mon-Thur</p>
-            <p>10AM-5PM</p>
-          </div>
+      <div class="contact-info">
+        <div class="column">
+          <p><strong>Address:</strong></p>
+          <p>123 Main St.</p>
+          <p>Montreal, QC</p>
+          <p>Y7K9L3</p>
         </div>
-        <div class="copyright">
-          <p>&copy; Copyright 2024, Sweet Symphony</p>
+        <div class="column">
+          <p><strong>Phone:</strong></p>
+          <p>123-456-78890</p>
         </div>
-        <div class="social-media">
-          <a href="mailto:info@sweetsymphony.com" target="_blank">
-            <img src="/images/E-mail.png" alt="email">
-          </a>
-          <a href="http://facebook.com/" target="_blank">
-            <img src="/images/facebook.png" alt="facebook">
-          </a>
-    <a href="http://twitter.com/" target="_blank">
-      <img src="images/twitter.png" alt="twitter">
-    </a>
-          <a href="http://instagram.com/" target="_blank">
-            <img src="/images/Instagram.png" alt="instagram">
-          </a>
+        <div class="column">
+          <p><strong>Opening Hours:</strong></p>
+          <p>Mon-Thur</p>
+          <p>10AM-5PM</p>
         </div>
-      </footer>
+      </div>
+      <div class="copyright">
+        <p>&copy; Copyright 2024, Sweet Symphony</p>
+      </div>
+      <div class="social-media">
+        <a href="mailto:info@sweetsymphony.com" target="_blank">
+          <img src="images/E-mail.png" alt="email">
+        </a>
+        <a href="http://facebook.com/" target="_blank">
+          <img src="images/facebook.png" alt="facebook">
+        </a>
+      <a href="http://twitter.com/" target="_blank">
+        <img src="images/twitter.png" alt="twitter">
+      </a>
+      <a href="http://instagram.com/" target="_blank">
+        <img src="images/Instagram.png" alt="instagram">
+      </a>
+      </div>
+    </footer>
 </body>
 
 </html>
