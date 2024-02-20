@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 .about a img {
   width: 180px; 
   border-radius: 250px;
@@ -23,8 +25,15 @@
 }
 
 @media screen and (max-width: 575px) {
+  h2 {
+    font-size: 15px;
+  }
   .about a img {
     width: 100px;
     margin: 10px;
+  }
+
+  .custom-row-width .col{
+    padding-left: 12%;
   }
 }
