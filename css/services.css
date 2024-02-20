@@ -43,7 +43,7 @@
 .servies .row div a {
   position: relative;
   display: block;
-  height: 180px;
+  height: 220px;
   border-radius: 10px;
   background-size: cover;
   border: solid 3px #e1a8b1;
@@ -59,8 +59,8 @@
   background: rgba(0, 0, 0, 0.6);
   color: #e1a8b1;
   font-weight: bold;
-  font-size: 28px;
-  line-height: 50px;
+  font-size: 32px;
+  line-height: 70px;
   opacity: 0;
   transition: all 0.5s;
 }
@@ -87,4 +87,4 @@
   .servies .row div a:hover {
     transform: scale(1);
   }
-}/*# sourceMappingURL=services.css.map */
+}
