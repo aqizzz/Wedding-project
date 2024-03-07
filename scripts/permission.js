@@ -121,7 +121,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
   let msgBox = document.getElementById("msgBox");
-  let profilePage = "#";
+  let profilePage = "user_profile.html";
   msgBox.innerHTML = "";
 
   try {
