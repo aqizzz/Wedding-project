@@ -133,12 +133,12 @@ File name: Home page
       <div class="col">
         <form id="personalInfo" method="post" action="form2.html" onreset="location.reload();" onsubmit="return validateForm();">
         <table>
-            <thead>
+            <tr>
               <th colspan="3">Personal Information
                 <input type="button" id="editBtn" value="Edit" onclick="editInfo();">
                 <input type="reset" name="btnCancel" id="btnCancel" value="Cancel" style="display: none;">
               </th>
-            </thead>
+            </tr>
             <tr>
                 <td><label for="fullName">Name</label></td>
                 <td colspan="2"><input type="text" id="fullName" name="fullName" value="" size="35"></td>
@@ -152,7 +152,7 @@ File name: Home page
                 <td colspan="2"><input type="email" id="emailAddress" name="emailAddress" value="" size="35"></td>
             </tr>
             <tr>
-                <td rowspan="4"><label for="address">Address</label></td>
+                <td rowspan="4"><label>Address</label></td>
                 <td style="font-weight: bold; text-align: left;"><label for="street">Street</label></td>
                 <td><input type="text" id="street" name="street" value="" size="25"></td>
             </tr>
@@ -173,18 +173,18 @@ File name: Home page
       </div> 
       <div class="col" id="wedding" style="display: none;">
         <table>
-            <thead><th colspan="4">Wedding Details<input type="button" id="editBtn" value="Edit" onclick="alertMsg();"></th></thead> 
+            <tr><th colspan="2">Wedding Details<input type="button" id="weddingEditBtn" value="Edit" onclick="alertMsg();"></th></tr> 
             <tr>
-                <td colspan="2">Wedding Date</td>
+                <td>Wedding Date</td>
                 <td id="weddingDate">&nbsp;</td>
             </tr>
             <tr>
-                <td colspan="2">Services Chosen</td>
+                <td>Services Chosen</td>
                 <td id="servicesChosen">&nbsp;</td>
             </tr>
         </table>
         <table id="countdown">
-            <thead><th colspan="8">Countdown</th></thead>
+            <tr><th colspan="8">Countdown</th></tr>
             <tr>
                 <td><input id="days" size="1" value="" disabled></td>
                 <td>Days</td>
