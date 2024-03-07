@@ -151,6 +151,7 @@ function validateClientInfo() {
     let postalCode = document.getElementById('postalCode').value;
     let postalRGEX = /^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1}[ ]{0,1}\d{1}[A-Za-z]{1}\d{1}$/;
     let emailRGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let phoneRGEX = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
     if (fullName == "") {
         alert('Name cannot be empty');
         document.getElementById('fullName').value = clientInfo.fullName;
@@ -161,7 +162,12 @@ function validateClientInfo() {
         document.getElementById('phoneNumber').value = clientInfo.phoneNumber;
         phoneNumber.focus();
         return false;
-    }  else if (email == "") {
+    } else if (phoneRGEX.test(phoneNumber) == false) {
+        alert('Please enter valid phone number');
+        document.getElementById('phoneNumber').value = clientInfo.phoneNumber;
+        email.focus();
+        return false;
+    } else if (email == "") {
         alert('Email cannot be empty');
         document.getElementById('emailAddress').value = clientInfo.emailAddress;
         email.focus();
