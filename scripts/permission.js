@@ -155,7 +155,7 @@ document.getElementById("register-form").addEventListener("submit", function(eve
   }
 
   try {
-    if (password === username ) throw "Password can not be the same as username";
+    if (password === username ) throw "Password can not be same as username";
   } catch (error) {
     msgBox.innerHTML = error;
   }
