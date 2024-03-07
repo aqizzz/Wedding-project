@@ -89,6 +89,7 @@ function editInfo() {
     for (let elem of elements) {
         elem.style.backgroundColor = '#e1a8b1';
     }
+    document.getElementById('btnCancel').style.display = 'block';
     document.getElementById('editBtn').value = 'Save';
     document.getElementById('editBtn').addEventListener('click', saveInfo);
 }
@@ -123,22 +124,88 @@ function removeDisabledAttribute() {
  * updates the existing array with the new data from the user.
  */
 function saveInfo() {
-    clientInfo.fullName = document.getElementById('fullName').value;
-    clientInfo.phoneNumber = document.getElementById('phoneNumber').value;
-    clientInfo.emailAddress = document.getElementById('emailAddress').value;
-    clientInfo.street = document.getElementById('street').value;
-    clientInfo.city = document.getElementById('city').value;
-    clientInfo.province = document.getElementById('province').value;
-    clientInfo.postalCode = document.getElementById('postalCode').value;
-    setDisabledAttribute();
+    validateClientInfo();   // validate user information
+    setDisabledAttribute(); // apply disabled attribute to all input boxes
     let elements = document.querySelectorAll('#personalInfo td input');
     for (let elem of elements) {
         elem.style.backgroundColor = 'white';
     }
     document.getElementById('editBtn').value = 'Edit';
-    document.getElementById('editBtn').addEventListener('click', editInfo);
+    document.getElementById('btnCancel').style.display = 'none';
+    document.getElementById('editBtn').removeEventListener('click', saveInfo);
     alert('Your information has been saved.');
     // location.reload();
+}
+
+/**
+ * validation for the personal information form
+ */
+function validateClientInfo() {
+    // declare and initialize variables
+    let fullName = document.getElementById('fullName').value;
+    let phoneNumber = document.getElementById('phoneNumber').value;
+    let email = document.getElementById('emailAddress').value;
+    let street = document.getElementById('street').value;
+    let city = document.getElementById('city').value;
+    let province = document.getElementById('province').value;
+    let postalCode = document.getElementById('postalCode').value;
+    let postalRGEX = /^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1}[ ]{0,1}\d{1}[A-Za-z]{1}\d{1}$/;
+    let emailRGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (fullName == "") {
+        alert('Name cannot be empty');
+        document.getElementById('fullName').value = clientInfo.fullName;
+        fullName.focus();
+        return false;
+    } else if (phoneNumber == "") {
+        alert('Phone Number cannot be empty');
+        document.getElementById('phoneNumber').value = clientInfo.phoneNumber;
+        phoneNumber.focus();
+        return false;
+    }  else if (email == "") {
+        alert('Email cannot be empty');
+        document.getElementById('emailAddress').value = clientInfo.emailAddress;
+        email.focus();
+        return false;
+    }   else if (emailRGEX.test(email) == false) {
+        alert('Please enter valid email address');
+        document.getElementById('emailAddress').value = clientInfo.emailAddress;
+        email.focus();
+        return false;
+    }   else if (street == "") {
+        alert('Street cannot be empty');
+        document.getElementById('street').value = clientInfo.street;
+        street.focus();
+        return false;
+    }  else if (city == "") {
+        alert('City cannot be empty');
+        document.getElementById('city').value = clientInfo.city;
+        city.focus();
+        return false;
+    }  else if (province == "") {
+        alert('Province cannot be empty');
+        document.getElementById('province').value = clientInfo.province;
+        province.focus();
+        return false;
+    }  else if (postalCode == "") {
+        alert('Postal Code cannot be empty');
+        document.getElementById('postalCode').value = clientInfo.postalCode;
+        postalCode.focus();
+        return false;
+    }  else if (postalRGEX.test(postalCode) == false) {
+        alert('Please enter a valid postal code');
+        document.getElementById('postalCode').value = clientInfo.postalCode;
+        postalCode.focus();
+        return false;
+    }   else {
+        clientInfo.fullName = document.getElementById('fullName').value;
+        clientInfo.phoneNumber = document.getElementById('phoneNumber').value;
+        clientInfo.emailAddress = document.getElementById('emailAddress').value;
+        clientInfo.street = document.getElementById('street').value;
+        clientInfo.city = document.getElementById('city').value;
+        clientInfo.province = document.getElementById('province').value;
+        clientInfo.postalCode = document.getElementById('postalCode').value;
+        return true;
+    }
 }
 
 /**
