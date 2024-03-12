@@ -23,7 +23,7 @@ let clientInfo =
         province: 'QC',
         postalCode: 'P9K 0J7',
         isHavingWedding: true,
-        eventDate: '2024-11-30',
+        totalPoint: 11000,
     };
 
 let weddingDetails =

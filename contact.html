@@ -17,7 +17,7 @@ File name: Contact page
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
   <script defer src="scripts/permission.js"></script>
-
+  <script src="scripts/contact_us.js" defer></script>
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon_io/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
@@ -135,15 +135,22 @@ File name: Contact page
           </tr>
           <tr>
             <td>
-                <label for="services">What type of service are you interested in? </label>
+              <label for="services">What type of service are you interested in?</label>
             </td>
             <td>
-                <select id="services" style="width: 265px;">
-                    <option value="rental">Rental</option>
-                    <option value="catering">Catering</option>
-                    <option value="wedding-planning">Wedding Planning</option>
-                    <option value="multiple-services">Multiple Services</option>
-                </select>
+              <div id="serviceInput" style="border: 1px solid #f03c69">Choose an option</div>
+            </td>
+          </tr>
+          <tr>
+            <td>(Click on the service again to remove from the list)</td>
+            <td>
+              <select id="services" style="width: 265px;" size="3"> 
+                  <option value="wedding-planning">Wedding Planning</option>
+                  <option value="make-up">Make-Up Artist</option>
+                  <option value="hairstylist">Hairstylist</option>
+                  <option value="photographer">Photographer</option>
+                  <option value="videographer">Videographer</option>
+              </select>
             </td>
           </tr>
           <tr>
