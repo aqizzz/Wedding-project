@@ -10,64 +10,109 @@ Order history would be on a new window.*/
 const DIAMOND = 100000;
 const GOLD = 50000;
 const SILVER = 25000;
+const USERID = 3;
 
-let clientInfo = 
-    {
-        userID: 1,
-        userName: 'isabella123',
-        fullName: 'Isabella Thompson',
-        phoneNumber: '123-456-7890',
-        emailAddress: 'me@email.com',
-        street: '50 Red Street',
-        city: 'Montreal',
-        province: 'QC',
-        postalCode: 'P9K 0J7',
-        isHavingWedding: true,
-        totalPoint: 11000,
-    };
+var clientInfo = {};
+var weddingDetails = {};
+var orderHistory = {};
 
-let weddingDetails =
-    {
-        userID: 1,
-        weddingDate: '2025-03-05 17:00',
-        servicesChosen: ['Photography', 'Videography', 'Wedding Planning', 'Hairstylist'],
-    };
-
-let orderHistory = [
-    {
-        userID: 1,
-        orderNumber: 100,
-        orderDate: '2024-03-11',
-        orderAmount: 2000,
-        pointsEarned: 10000,
-    },
-    {
-        userID: 1,
-        orderNumber: 210,
-        orderDate: '2024-04-11',
-        orderAmount: 200,
-        pointsEarned: 1000,
-    }
-];
-
-
-window.addEventListener('load', startup);
+window.addEventListener('load', loadData);
 
 /**
- * function to retrieve data from the arrays above about the user, their wedding (if applicable), and their order history
- * and prints the information in their respective section.
+ * function to load all the data for clients, wedding details, and order history
  */
-function startup() {
-    getPersonalInfo();
+function loadData() {
+    loadClientData();
+    loadWeddingData();
+    loadOrderData();
+}
 
-    getWeddingDetails();
+/**
+ * loads client data from clients.json file
+ */
+function loadClientData() {
+    let xhr = new XMLHttpRequest();
+    if (xhr) {
+        xhr.open("get", 'data/clients.json');
 
-    getOrderHistory();
+        // passing data to the server
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                let json = xhr.responseText;
+                const obj = JSON.parse(json);
+                let filteredData = obj.filter(function(i) {
+                    return i.userID === USERID;
+                });
+                let storedData = window.localStorage.getItem(USERID);
+                if (storedData === null) {
+                    window.localStorage.setItem(USERID, JSON.stringify(filteredData[0]));
+                }
+                clientInfo = JSON.parse(storedData);
+                getPersonalInfo();
+            }
+        }
+
+        // sending the request
+        xhr.send();
+    }
+}
+
+/**
+ * loads wedding details from weddingDetails.json file
+ */
+function loadWeddingData() {
+    let xhr = new XMLHttpRequest();
+    if (xhr) {
+        xhr.open("get", 'data/weddingDetails.json');
+
+        // passing data to the server
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                let json = xhr.responseText;
+                const obj = JSON.parse(json);
+                let filteredData = obj.filter(function(i) {
+                    return i.userID === USERID;
+                });
+                if (!filteredData.length == 0) {
+                    weddingDetails = filteredData[0];
+                    getWeddingDetails();
+                }
+            }
+        }
+
+        // sending the request
+        xhr.send();
+    }
+}
+
+/**
+ * loads order history from orderHistory.json file
+ */
+function loadOrderData() {
+    let xhr = new XMLHttpRequest();
+    if (xhr) {
+        xhr.open("get", 'data/orderHistory.json');
+
+        // passing data to the server
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                let json = xhr.responseText;
+                const obj = JSON.parse(json);
+                let filteredData = obj.filter(function(i) {
+                    return i.userID === USERID;
+                });
+                orderHistory = filteredData;
+                getOrderHistory();
+            }
+        }
+
+        // sending the request
+        xhr.send();
+    }
 }
 
 /**
  * retrieves and prints the user's personal information into their respective input boxes from the array.
- * User is then unable to edit the information due to the disabled attribute.
  */
 function getPersonalInfo() {
     document.getElementById('fullName').value = clientInfo.fullName;
@@ -77,141 +122,61 @@ function getPersonalInfo() {
     document.getElementById('city').value = clientInfo.city;
     document.getElementById('province').value = clientInfo.province;
     document.getElementById('postalCode').value = clientInfo.postalCode;
-    setDisabledAttribute();
 }
 
 /**
- * allows the user to edit their personal information
+ * populate edit modal information
  */
 function editInfo() {
-    removeDisabledAttribute();
-    let elements = document.querySelectorAll('#personalInfo td input');
-    for (let elem of elements) {
-        elem.style.backgroundColor = '#e1a8b1';
-    }
-    document.getElementById('btnCancel').style.display = 'block';
-    document.getElementById('editBtn').value = 'Save';
-    document.getElementById('editBtn').addEventListener('click', saveInfo);
+    document.getElementById('fullNameEdit').value = clientInfo.fullName;
+    document.getElementById('phoneNumberEdit').value = clientInfo.phoneNumber;
+    document.getElementById('emailAddressEdit').value = clientInfo.emailAddress;
+    document.getElementById('streetEdit').value = clientInfo.street;
+    document.getElementById('cityEdit').value = clientInfo.city;
+    document.getElementById('provinceEdit').value = clientInfo.province;
+    document.getElementById('postalCodeEdit').value = clientInfo.postalCode;
 }
 
 /**
- * Sets the disabled attribute so the user cannot enter or change data in the input boxes
+ * update file with new client information
  */
-function setDisabledAttribute() {
-    document.getElementById('fullName').setAttribute("disabled", "disabled");
-    document.getElementById('phoneNumber').setAttribute("disabled", "disabled");
-    document.getElementById('emailAddress').setAttribute("disabled", "disabled");
-    document.getElementById('street').setAttribute("disabled", "disabled");
-    document.getElementById('city').setAttribute("disabled", "disabled");
-    document.getElementById('province').setAttribute("disabled", "disabled");
-    document.getElementById('postalCode').setAttribute("disabled", "disabled");
+function updateInfo() {
+    clientInfo.fullName = document.getElementById('fullNameEdit').value;
+    clientInfo.phoneNumber = document.getElementById('phoneNumberEdit').value;
+    clientInfo.emailAddress = document.getElementById('emailAddressEdit').value;
+    clientInfo.street = document.getElementById('streetEdit').value;
+    clientInfo.city = document.getElementById('cityEdit').value;
+    clientInfo.province = document.getElementById('provinceEdit').value;
+    clientInfo.postalCode = document.getElementById('postalCodeEdit').value;
+    window.localStorage.removeItem(USERID);
+    window.localStorage.setItem(USERID, JSON.stringify(clientInfo));
 }
 
 /**
- * Removes the disabled attribute so the user can enter data in the input boxes
- */
-function removeDisabledAttribute() {
-    document.getElementById('fullName').removeAttribute("disabled");
-    document.getElementById('phoneNumber').removeAttribute("disabled");
-    document.getElementById('emailAddress').removeAttribute("disabled");
-    document.getElementById('street').removeAttribute("disabled");
-    document.getElementById('city').removeAttribute("disabled");
-    document.getElementById('province').removeAttribute("disabled");
-    document.getElementById('postalCode').removeAttribute("disabled");
-}
-
-/**
- * updates the existing array with the new data from the user.
- */
-function saveInfo() {
-    validateClientInfo();   // validate user information
-    setDisabledAttribute(); // apply disabled attribute to all input boxes
-    let elements = document.querySelectorAll('#personalInfo td input');
-    for (let elem of elements) {
-        elem.style.backgroundColor = 'white';
-    }
-    document.getElementById('editBtn').value = 'Edit';
-    document.getElementById('btnCancel').style.display = 'none';
-    document.getElementById('editBtn').removeEventListener('click', saveInfo);
-    alert('Your information has been saved.');
-    // location.reload();
-}
-
-/**
- * validation for the personal information form
+ * validation for the personal information form. If true, update information
  */
 function validateClientInfo() {
     // declare and initialize variables
-    let fullName = document.getElementById('fullName').value;
-    let phoneNumber = document.getElementById('phoneNumber').value;
-    let email = document.getElementById('emailAddress').value;
-    let street = document.getElementById('street').value;
-    let city = document.getElementById('city').value;
-    let province = document.getElementById('province').value;
-    let postalCode = document.getElementById('postalCode').value;
-    let postalRGEX = /^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1}[ ]{0,1}\d{1}[A-Za-z]{1}\d{1}$/;
-    let emailRGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    let phoneRGEX = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-    if (fullName == "") {
-        alert('Name cannot be empty');
-        document.getElementById('fullName').value = clientInfo.fullName;
-        fullName.focus();
-        return false;
-    } else if (phoneNumber == "") {
-        alert('Phone Number cannot be empty');
-        document.getElementById('phoneNumber').value = clientInfo.phoneNumber;
-        phoneNumber.focus();
-        return false;
-    } else if (phoneRGEX.test(phoneNumber) == false) {
-        alert('Please enter valid phone number');
-        document.getElementById('phoneNumber').value = clientInfo.phoneNumber;
-        email.focus();
-        return false;
-    } else if (email == "") {
-        alert('Email cannot be empty');
-        document.getElementById('emailAddress').value = clientInfo.emailAddress;
-        email.focus();
-        return false;
-    }   else if (emailRGEX.test(email) == false) {
-        alert('Please enter valid email address');
-        document.getElementById('emailAddress').value = clientInfo.emailAddress;
-        email.focus();
-        return false;
-    }   else if (street == "") {
-        alert('Street cannot be empty');
-        document.getElementById('street').value = clientInfo.street;
-        street.focus();
-        return false;
-    }  else if (city == "") {
-        alert('City cannot be empty');
-        document.getElementById('city').value = clientInfo.city;
-        city.focus();
-        return false;
-    }  else if (province == "") {
-        alert('Province cannot be empty');
-        document.getElementById('province').value = clientInfo.province;
-        province.focus();
-        return false;
-    }  else if (postalCode == "") {
-        alert('Postal Code cannot be empty');
-        document.getElementById('postalCode').value = clientInfo.postalCode;
-        postalCode.focus();
-        return false;
-    }  else if (postalRGEX.test(postalCode) == false) {
-        alert('Please enter a valid postal code');
-        document.getElementById('postalCode').value = clientInfo.postalCode;
-        postalCode.focus();
-        return false;
-    }   else {
-        clientInfo.fullName = document.getElementById('fullName').value;
-        clientInfo.phoneNumber = document.getElementById('phoneNumber').value;
-        clientInfo.emailAddress = document.getElementById('emailAddress').value;
-        clientInfo.street = document.getElementById('street').value;
-        clientInfo.city = document.getElementById('city').value;
-        clientInfo.province = document.getElementById('province').value;
-        clientInfo.postalCode = document.getElementById('postalCode').value;
-        return true;
-    }
+    (() => {
+        'use strict'
+      
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+      
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            
+            form.classList.add('was-validated')
+            updateInfo();
+          }, false)
+        })
+      })()
+    
 }
 
 /**
@@ -219,24 +184,20 @@ function validateClientInfo() {
  * and services required during their wedding.
  */
 function getWeddingDetails() {
-    if (clientInfo.isHavingWedding === true) {    
-        setInterval('getCountdown()', 1000);     
-        document.getElementById('wedding').style.display = 'block';
-        let weddingDateOnly = weddingDetails.weddingDate.substring(0, 11);
-        let hourInWeddingDate = parseInt(weddingDetails.weddingDate.substring(11, 13));
-        let minutesInWeddingDate = weddingDetails.weddingDate.substring(13, 16);
-        let ampm = 'AM';
-        if (hourInWeddingDate >= 12) {
-            if (hourInWeddingDate > 12) {
-                hourInWeddingDate = hourInWeddingDate - 12;
-            }
-            ampm = 'PM';
+    setInterval('getCountdown()', 1000);     
+    document.getElementById('wedding').style.display = 'block';
+    let weddingDateOnly = weddingDetails.weddingDate.substring(0, 11);
+    let hourInWeddingDate = parseInt(weddingDetails.weddingDate.substring(11, 13));
+    let minutesInWeddingDate = weddingDetails.weddingDate.substring(13, 16);
+    let ampm = 'AM';
+    if (hourInWeddingDate >= 12) {
+        if (hourInWeddingDate > 12) {
+            hourInWeddingDate = hourInWeddingDate - 12;
         }
-        document.getElementById('weddingDate').innerHTML = `${weddingDateOnly} ${hourInWeddingDate}${minutesInWeddingDate} ${ampm}`;
-        document.getElementById('servicesChosen').innerHTML = `${weddingDetails.servicesChosen}`;
-    } else {
-        document.getElementById('wedding').style.display = 'none';
+        ampm = 'PM';
     }
+    document.getElementById('weddingDate').innerHTML = `${weddingDateOnly} ${hourInWeddingDate}${minutesInWeddingDate} ${ampm}`;
+    document.getElementById('servicesChosen').innerHTML = `${weddingDetails.servicesChosen}`;
 }
 
 /**
@@ -279,23 +240,23 @@ function getOrderHistory() {
             totalPoints += item.pointsEarned;
             HTMLCode += `<tr><td>${item.orderNumber}</td>`;
             HTMLCode += `<td>${item.orderDate}</td>`;
-            HTMLCode += `<td>$${item.orderAmount}</td>`;
-            HTMLCode += `<td>${item.pointsEarned}</td></tr>`;   
+            HTMLCode += `<td>$${item.orderAmount.toLocaleString('en-US')}</td>`;
+            HTMLCode += `<td>${item.pointsEarned.toLocaleString('en-US')}</td></tr>`;   
         }
         HTMLCode += '<tr><td colspan="3" style="text-align: center;">Total Points ';
         if (totalPoints >= DIAMOND) {
             HTMLCode += '(Congratulations, you are a diamond client!)</td>';
         } else {
             if (totalPoints >= GOLD) {
-                HTMLCode += `(${DIAMOND-totalPoints} points away from DIAMOND)</td>`;
+                HTMLCode += `(${(DIAMOND-totalPoints).toLocaleString('en-US')} points away from DIAMOND)</td>`;
             } else if (totalPoints >= SILVER){
-                HTMLCode += `(${GOLD-totalPoints} points away from GOLD)</td>`;
+                HTMLCode += `(${(GOLD-totalPoints).toLocaleString('en-US')} points away from GOLD)</td>`;
             }  else {
-                HTMLCode += `(${SILVER-totalPoints} points away from SILVER)</td>`;
+                HTMLCode += `(${(SILVER-totalPoints).toLocaleString('en-US')} points away from SILVER)</td>`;
             }
         }
         
-        HTMLCode += `<td>${totalPoints}</td></tr>`
+        HTMLCode += `<td>${totalPoints.toLocaleString('en-US')}</td></tr>`
         document.getElementById('history').innerHTML = HTMLCode;
     
     } 
