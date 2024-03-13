@@ -5,6 +5,9 @@ let userIcon = "filled";
 
 if(userName) {
   addUserBanner();
+  window.addEventListener('DOMContentLoaded', function() {
+    setInterval(changeIcon, 2000);
+  });
 }
 
 function addUserBanner() {
@@ -67,6 +70,7 @@ function addUserBanner() {
 
   let userIconSpan = document.createElement("span");
   userIconSpan.className = "banner-icon";
+  userIconSpan.innerHTML = '<ion-icon name="happy"></ion-icon>';
   userIconSpan.setAttribute("id", "user-icon");
   userBannerLeft.insertAdjacentElement('beforeend', userIconSpan);
   
@@ -129,6 +133,3 @@ function changeIcon() {
   }
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-  setInterval(changeIcon, 2000);
-});
