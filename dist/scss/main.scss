@@ -361,6 +361,37 @@ body {
     }
 }
 
+.user-banner {
+    margin: 0 12% 5px;
+    padding: 5px 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .banner-icon {
+        font-size: 18px;
+        color: $accent-color;
+        padding: 0 8px;
+
+        ion-icon {
+            vertical-align: bottom;
+            margin-bottom: 3px;
+        }
+    }
+
+    .banner-user-name {
+        text-decoration: none;
+        color: black;
+    }
+
+    .banner-user-name:hover {
+        color: $complementary-color;
+        text-decoration:underline dotted;
+    }
+}
+
+
 .wrapper.active {
     height: 590px;
 
@@ -516,6 +547,10 @@ body {
         }
 
     }
+
+    .user-banner {
+        margin: 0 5%;
+    }
 }
  
 @media screen and (max-width: $mobile) {
@@ -542,6 +577,11 @@ body {
                 font-size: size(mobile-menu);
             }
         }
+    }
+
+    .user-banner {
+        margin: 0 5%;
+        flex-direction: column; 
     }
 
     .language-selector {
