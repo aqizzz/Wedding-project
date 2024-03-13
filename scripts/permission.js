@@ -5,13 +5,34 @@ Need register link to a new page. When clicked to register, replace current page
 After registration, link to home page. client can choose to log in again.*/
 'use strict';
 
-function addLoginButton() {
-  let loginHtml = `<button class="btnLogin-popup" onclick="openLoginModal()">Log in</button>`;
-  document.getElementsByClassName("language-selector")[0].insertAdjacentHTML('afterbegin', loginHtml);
+let userName = window.localStorage.getItem("userName");
+
+window.addEventListener('load', startup, false);
+
+function startup() {
+  addLoginButton();
 }
 
-addLoginButton();
+/**
+ * Adds a login button to the page. After user logged in, the button will be log out button
+ */
+function addLoginButton() {
+  let userButton = document.createElement("button");
+  userButton.className = "btnLogin-popup";
+  if(!userName) {
+    userButton.textContent = "Log in";
+    userButton.addEventListener("click", openLoginModal);
+  }else{
+    userButton.textContent = "Log out";
+    userButton.addEventListener("click", logOut);
+  }
+  let referenceNode = document.getElementsByClassName("language-selector")[0].childNodes[0];
+  referenceNode.parentNode.insertBefore(userButton, referenceNode);
+}
 
+/**
+ * Creates a login modal.
+ */
 function createLoginModal() {  
   let forgetPasswordPage = "#";
   let modalHtml = `
@@ -101,10 +122,12 @@ loginLink.addEventListener('click', ()=> {
 let modal = document.getElementById("loginModal");
 let closeButton = document.getElementsByClassName("close")[0];
 
+// Close login modal when click the close button.
 closeButton.onclick = function() {
   modal.style.display = "none";
 }
 
+// Close login modal when click any where outside the model.
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -126,6 +149,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
 
   try {
     if (username !== "admin" || password !== "admin") throw "Wrong username or password";
+        window.localStorage.setItem("userName", username);
         window.location.href = profilePage;
   } catch (error) {
     msgBox.innerHTML = error;
@@ -139,30 +163,23 @@ document.getElementById("register-form").addEventListener("submit", function(eve
   let email = document.getElementById("email").value;
   let password = document.getElementById("regPassword").value;
   let confirmPassword = document.getElementById("confirmPassword").value;
-  let msgBox = document.getElementById("msgBoxReg");
-  msgBox.innerHTML = "";
+  let msgBoxReg = document.getElementById("msgBoxReg");
+  msgBoxReg.innerHTML = "";
 
   try {
     if (username === "admin" ) throw "Username exists";
-  } catch (error) {
-    msgBox.innerHTML = error;
-  }
-
-  try {
     if (email === "admin@email.com" ) throw "Email address exists";
-  } catch (error) {
-    msgBox.innerHTML = error;
-  }
-
-  try {
-    if (password === username ) throw "Password can not be the same as username";
-  } catch (error) {
-    msgBox.innerHTML = error;
-  }
-
-  try {
+    if (password === username ) throw "Password can not be same as username";
+    if (password.length < 8 ) throw "Password length must be atleast 8 characters"
     if (confirmPassword !== password ) throw "Passwords must be same";
+    alert("Registration successful! Please log in.");
+    document.querySelector('.wrapper').classList.remove('active');
   } catch (error) {
-    msgBox.innerHTML = error;
+    msgBoxReg.innerHTML = error;
   }
 });
+
+function logOut() {
+  window.localStorage.removeItem("userName");
+  window.location.reload();
+}
