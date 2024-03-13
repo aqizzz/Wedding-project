@@ -100,3 +100,26 @@
         font-size: medium;
     }
 }
+
+
+.btn-primary {
+    --bs-btn-bg: #e1a8b1 !important;
+    --bs-btn-border-color: #e1a8b1 !important;
+    --bs-btn-hover-bg: #da576b !important;
+    --bs-btn-hover-border-color: #da576b !important;
+    font-weight: 600;
+    width: 220px;
+    position: absolute;
+    top:250px;
+    left:70%;
+  }
+  
+  .btn-primary a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .btn-primary a i {
+    vertical-align: middle;
+    margin-top: -5px;
+  }
