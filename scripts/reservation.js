@@ -10,7 +10,6 @@ const items = [];
     const iList = document.querySelector('.iList');
     const promptu = document.querySelector('.promptu');
     const promptd = document.querySelector('.promptd');
-    // console.log(promptd);
     
 
     const today = Date.now();
@@ -20,7 +19,7 @@ const items = [];
     const cstard = document.querySelector('.cstartd');
     const cendd = document.querySelector('.cendd');
     const cadd = document.querySelector('.cadd');
-    // console.log(cadd);
+
 
     const empty = document.querySelector('.empty');
     const emptyinfo = document.querySelector('.emptyinfo');
@@ -28,16 +27,12 @@ const items = [];
     const dia = document.querySelector('.dia');
     const diabg = document.querySelector('.diabg');
     const close = document.querySelector('.dia .closeRe');
-    // console.log(close);
+  
 
-    const guest = document.querySelector('.guest');
-    const login = document.querySelector('.login');
-    const ele = document.querySelector('target');
-    const logbut = document.querySelector('.btnLogin-popup');
+    const guest = document.querySelector('.dia .guest');
+    const login = document.querySelector('.dia .login');
+    console.log(login);
     
-    
-
-  //  console.log(guest);
 
 
     let deldef;
@@ -341,12 +336,13 @@ const items = [];
     iList.addEventListener('click', del);
 
     function subform() {
-      // $("logbut").css("display") == "none"
- 
-      if(false){
+
+
+      if(localStorage.hasOwnProperty('userName')){
         iList.removeEventListener('click', del);
         sub.click();
       }
+
       else {
         const sub = document.querySelector('.iList div input');
       diabg.style.display='block';
@@ -355,7 +351,7 @@ const items = [];
         e.preventDefault();
         diabg.style.display='none';
         dia.style.display = 'none';
-        logbut.click();
+        openLoginModal();
       });
       guest.addEventListener('click', function(e){
         diabg.style.display='none';

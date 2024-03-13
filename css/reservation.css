@@ -24,23 +24,44 @@
     opacity: 1 !important;
     width: 350px;
     height: 200px;
-    border: 2px solid #e1a8b1;
+    /* border: 2px solid #e1a8b1; */
     border-radius: 10px;
     text-align: center;
     line-height: 200px;
-    font-size: 18px;
+    
     color:#e1a8b1;
     background-color: #ffffff;
     z-index: 2;
-    font-weight: 500;
+    font-weight: 500;  
     
 }
+.dia a,
+.dia span {
+    display: block;
+    color: #a7a4a4;
+    text-decoration: none;
+    line-height: 40px;
+
+}
+.dia .login{
+    margin-top: 70px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #e1a8b1;
+}
+.dia .login em{
+    font-size: 28px;
+    text-decoration: underline;
+}
+
+.dia .guest {
+    font-size: 18px;
+
+}
+
 
 .closeRe {
     position: absolute;
-    /* border: #e1a8b1 1px solid; */
-    
-    top: -42%;
     left: 93%;
     
 
@@ -59,17 +80,7 @@
   } */
 
 
-.dia a {
-    color: #5e5b5b;
-    
-}
 
-.dia a:last-child{
-    font-size: 24px;
-    font-weight: 600;
-    color: #e1a8b1;
-    
-}
 
 
 
