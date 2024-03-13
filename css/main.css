@@ -312,6 +312,32 @@ body h1, body h2, body h3, body h4 {
   cursor: pointer;
 }
 
+.user-banner {
+  margin: 0 12% 5px;
+  padding: 5px 50px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user-banner .banner-icon {
+  font-size: 18px;
+  color: #e1a8b1;
+  padding: 0 8px;
+}
+.user-banner .banner-icon ion-icon {
+  vertical-align: bottom;
+  margin-bottom: 3px;
+}
+.user-banner .banner-user-name {
+  text-decoration: none;
+  color: black;
+}
+.user-banner .banner-user-name:hover {
+  color: #a8e1d8;
+  text-decoration: underline dotted;
+}
+
 .wrapper.active {
   height: 590px;
 }
@@ -441,6 +467,9 @@ body h1, body h2, body h3, body h4 {
     display: block;
     padding-right: 10px;
   }
+  .user-banner {
+    margin: 0 5%;
+  }
 }
 @media screen and (max-width: 575px) {
   .search-bar {
@@ -458,6 +487,10 @@ body h1, body h2, body h3, body h4 {
   }
   .breadcrumb li a {
     font-size: 0.8rem;
+  }
+  .user-banner {
+    margin: 0 5%;
+    flex-direction: column;
   }
   .language-selector {
     width: 80px;
