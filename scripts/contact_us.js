@@ -10,7 +10,7 @@ options.forEach(option => {
             list.push(option.innerHTML);
             selectedList = ""
             for (let item of list) {
-                selectedList += item + '\t';
+                selectedList += item + '<br>';
             }
             document.getElementById('serviceInput').innerHTML = selectedList;
         } else {
@@ -18,7 +18,7 @@ options.forEach(option => {
             list = list.filter(e => e !== option.innerHTML);
             selectedList = ""
             for (let item of list) {
-                selectedList += item + '\t';
+                selectedList += item + '<br>';
             }
             document.getElementById('serviceInput').innerHTML = selectedList;
         }
