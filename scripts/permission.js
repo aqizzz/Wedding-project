@@ -146,7 +146,12 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   try {
     if (!((username === "isabella123" && username === "john123" && username === "mary123") || password === "admin")) throw "Wrong username or password";
         window.localStorage.setItem("userName", username);
-        window.location.href = profilePage;
+        if (window.location.pathname === "/reservation.html") {
+          window.location.href = "check_out.html";
+        }else{
+          window.location.href = profilePage;
+        }
+        
   } catch (error) {
     msgBox.innerHTML = error;
   }
