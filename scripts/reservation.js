@@ -45,7 +45,7 @@ const items = [];
 
     
     window.addEventListener('load',function(){
-      xhr.open('get', 'reservation.json',false);
+      xhr.open('get', 'data/reservation.json',false);
       xhr.send();
         if(xhr.readyState == 4 && xhr.status == 200){
           pobj= JSON.parse(xhr.responseText);
