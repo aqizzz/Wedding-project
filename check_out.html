@@ -13,8 +13,6 @@ File name: Home page
   <link rel="stylesheet" href="css/check_out.css" >
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="/scripts/check_out.js" defer></script>
-  <script defer src="scripts/permission.js"></script>
-  <script defer src="scripts/banner.js"></script>
    <!-- Favicon -->
    <link rel="shortcut icon" href="images/favicon_io/favicon.ico">
    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
@@ -93,7 +91,7 @@ File name: Home page
 
     
         <form name="form3" id="form3" method="dialog" style="padding: 3%;"
-          onreset="location.reload();" onsubmit="return validateForm();">
+          onreset="location.reload();" onsubmit="return validateForm(); ">
 
 
           <label for="name">Name<span><sup>*</sup></span> : </label>
@@ -225,7 +223,6 @@ File name: Home page
       <fieldset style="text-align: center;">
         
         <p >
-
         <button id="showDialog" onclick = "dialog.show();">
                     Payment Window
         </button>
@@ -336,11 +333,20 @@ File name: Home page
             </td>
           </tr>
 
+          
           <tr>
             <th>
-              Points value :
+              New Points :
             </th>
-            <td id="customer-points-value">
+            <td id="customer-newPoints">
+            </td>
+          </tr>
+          
+          <tr>
+            <th>
+              Points after payment :
+            </th>
+            <td id="customer-PointsAfterPayment">
             </td>
           </tr>
           
@@ -351,7 +357,6 @@ File name: Home page
             <td id="customer-discount">
             </td>
           </tr>
-          
           
           <tr>
             <th>
@@ -423,7 +428,7 @@ File name: Home page
 
          <div id="result" class="container">
 
-          <div class="row" id="PaymentPaid" >Payment not paid yet
+          <div class="row" id="PaymentPaid" > Your Payment has not been processed yet
           </div>
           
           <div class="row" >
@@ -487,7 +492,5 @@ File name: Home page
     </a>
     </div>
   </footer>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
