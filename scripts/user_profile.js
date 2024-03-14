@@ -10,11 +10,11 @@ Order history would be on a new window.*/
 const DIAMOND = 100000;
 const GOLD = 50000;
 const SILVER = 25000;
-const USERID = 3;
 
 var clientInfo = {};
 var weddingDetails = {};
 var orderHistory = {};
+let storageKey = "userInfo";
 
 window.addEventListener('load', loadData);
 
@@ -22,9 +22,11 @@ window.addEventListener('load', loadData);
  * function to load all the data for clients, wedding details, and order history
  */
 function loadData() {
-    loadClientData();
-    loadWeddingData();
-    loadOrderData();
+    if(userName) {
+        loadClientData();
+        loadWeddingData();
+        loadOrderData();
+    }
 }
 
 /**
@@ -41,11 +43,12 @@ function loadClientData() {
                 let json = xhr.responseText;
                 const obj = JSON.parse(json);
                 let filteredData = obj.filter(function(i) {
-                    return i.userID === USERID;
+                    return i.userName === userName;
                 });
-                let storedData = window.localStorage.getItem(USERID);
+                let storedData = window.localStorage.getItem(storageKey);
                 if (storedData === null) {
-                    window.localStorage.setItem(USERID, JSON.stringify(filteredData[0]));
+                    window.localStorage.setItem(storageKey, JSON.stringify(filteredData[0]));
+                    storedData = window.localStorage.getItem(storageKey);
                 }
                 clientInfo = JSON.parse(storedData);
                 getPersonalInfo();
@@ -71,7 +74,7 @@ function loadWeddingData() {
                 let json = xhr.responseText;
                 const obj = JSON.parse(json);
                 let filteredData = obj.filter(function(i) {
-                    return i.userID === USERID;
+                    return i.userID === clientInfo.userID;
                 });
                 if (!filteredData.length == 0) {
                     weddingDetails = filteredData[0];
@@ -99,7 +102,7 @@ function loadOrderData() {
                 let json = xhr.responseText;
                 const obj = JSON.parse(json);
                 let filteredData = obj.filter(function(i) {
-                    return i.userID === USERID;
+                    return i.userID === clientInfo.userID;
                 });
                 orderHistory = filteredData;
                 getOrderHistory();
@@ -148,8 +151,8 @@ function updateInfo() {
     clientInfo.city = document.getElementById('cityEdit').value;
     clientInfo.province = document.getElementById('provinceEdit').value;
     clientInfo.postalCode = document.getElementById('postalCodeEdit').value;
-    window.localStorage.removeItem(USERID);
-    window.localStorage.setItem(USERID, JSON.stringify(clientInfo));
+    window.localStorage.removeItem(storageKey);
+    window.localStorage.setItem(storageKey, JSON.stringify(clientInfo));
 }
 
 /**

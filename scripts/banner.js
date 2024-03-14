@@ -1,17 +1,13 @@
 'use strict';
 
-let userPoint = 100000;
 let userIcon = "filled";
 
 if(userName) {
   addUserBanner();
-  window.addEventListener('DOMContentLoaded', function() {
-    setInterval(changeIcon, 2000);
-  });
 }
 
 function addUserBanner() {
-  let name = window.localStorage.getItem("userName");           // string entered by the user 
+  
   let message = "";        // the greeting message
   let today;          // an instance (object) of the Date object
   let theHour;        // extracted from the today current hour
@@ -63,7 +59,7 @@ function addUserBanner() {
   let userProfileLink = document.createElement("a");
   userProfileLink.href = "user_profile.html";
   userProfileLink.className = "banner-user-name";
-  userProfileLink.textContent = name;
+  userProfileLink.textContent = userName;
   userProfileLink.title = "Click to view your profile";
   userBannerLeft.insertAdjacentElement('beforeend', userProfileLink);
 
@@ -93,25 +89,31 @@ function addUserBanner() {
 
   userBannerRight.insertAdjacentElement('beforeend', pointsToNextLevel);
 
-  if ( userPoint > 25000 && userPoint < 50000){// silver account
-    tropyIconSpan.style.color = 'silver';
-    pointsToNextLevel.textContent = 50000 - userPoint;
-   
-  } else if ((userPoint >= 50000) && (userPoint < 100000)) {// golden account
+  let clientInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+  let userPoint = parseInt(clientInfo.totalPoint);
+
+  if (userPoint >= 100000){// diamond account
+    tropyIconSpan.innerHTML = '<ion-icon name="diamond"></ion-icon>';
+    messageRight.textContent = "You are a diamond client!";
+
+  } else if (userPoint >= 50000) {// golden account
     tropyIconSpan.style.color = 'gold';
     pointsToNextLevel.textContent = 100000 - userPoint;
 
-  }else if (userPoint >= 100000){// diamond account
-    tropyIconSpan.innerHTML = '<ion-icon name="diamond"></ion-icon>';
-    messageRight.textContent = "You've reached the top level";
-  }else{
+  } else if ( userPoint > 25000 ){// silver account
+    tropyIconSpan.style.color = 'silver';
+    pointsToNextLevel.textContent = 50000 - userPoint;
+   
+  } else {
     tropyIconSpan.style.color = 'BurlyWood';
+    pointsToNextLevel.textContent = 25000 - userPoint;
     
   };
 
   document.getElementsByClassName("web-header")[0].insertAdjacentElement('afterend', userBanner);
 
   changeIcon();
+  setInterval(changeIcon, 2000);
 }
 
 

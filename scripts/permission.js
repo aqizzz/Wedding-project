@@ -7,11 +7,7 @@ After registration, link to home page. client can choose to log in again.*/
 
 let userName = window.localStorage.getItem("userName");
 
-window.addEventListener('load', startup, false);
-
-function startup() {
-  addLoginButton();
-}
+window.addEventListener('load', addLoginButton, false);
 
 /**
  * Adds a login button to the page. After user logged in, the button will be log out button
@@ -148,7 +144,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   msgBox.innerHTML = "";
 
   try {
-    if (username !== "admin" || password !== "admin") throw "Wrong username or password";
+    if (!((username === "isabella123" && username === "john123" && username === "mary123") || password === "admin")) throw "Wrong username or password";
         window.localStorage.setItem("userName", username);
         window.location.href = profilePage;
   } catch (error) {
@@ -179,7 +175,10 @@ document.getElementById("register-form").addEventListener("submit", function(eve
   }
 });
 
+
+
 function logOut() {
   window.localStorage.removeItem("userName");
+  window.localStorage.removeItem("userInfo");
   window.location.reload();
 }
