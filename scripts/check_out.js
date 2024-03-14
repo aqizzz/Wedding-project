@@ -4,12 +4,37 @@
 
 window.addEventListener('load',startup, false);
 /**
- * displays the current date
+ * 
  */
 function startup() {
-document.getElementById('second').innerHTML=  today();
-        document.getElementById('txtDateNow').value = today();
+
+    //displays the current date
+    document.getElementById('second').innerHTML=  today();
+    document.getElementById('txtDateNow').value = today();
+
+    // via query parameters - get 
+    const params = (new URL(document.location)).searchParams;
+
+    const cust_amount = params.get('estimated_total');
+    
+    // via local storage 
+    document.getElementById("amount").value = cust_amount;
+    document.getElementById("customer-amount").innerHTML = '$ '+document.getElementById("amount").value+' CAD';
+    document.getElementById("customer-newPoints").innerHTML = Math.floor(Number(document.getElementById("amount").value) /5);
+    document.getElementById("customer-PointsAfterPayment").innerHTML = document.getElementById("customer-newPoints").innerHTML + document.getElementById("points").innerHTML;
+    
+    
+    document.getElementById('form3').onsubmit = store;
+
 }// end function startup
+
+function store() {
+  let key = new Date(); 
+    if (validateForm()) {
+      
+        window.localStorage.setItem(key, JSON.stringify(payment)); // converting object to string
+    }
+} // end function store 
 
 
 /**
@@ -38,6 +63,15 @@ function sendEmailInvoice() {
     }
 }
 
+function handleSubmit() {
+    
+    const cust_amount = document.getElementById('estimated_total').value;
+    
+    // set the estimated_total into the local storage 
+    localStorage.setItem('Amount', cust_amount);
+   
+    return;
+}
 /**
  * validate user data entry
  */
@@ -110,12 +144,12 @@ function validateForm() {
     }
     else if (document.getElementById("expiryY").value === "") {
                                 
-                                    window.alert('You must enter your card expiry year');
-                                    document.getElementById("expiryY").focus();
-                                    return false;
+         window.alert('You must enter your card expiry year');
+         document.getElementById("expiryY").focus();
+         return false;                                                      
     }
 
-        document.getElementById("PaymentPaid").innerHTML = 
+    document.getElementById("PaymentPaid").innerHTML = 
             "<br> Thank you  <br>Your payment has been processed <br>";
     return true;
    
@@ -132,21 +166,21 @@ function chooseLevel() {
      if ( hisPoints > 25000 && hisPoints < 50000){// silver account
          discount = 0.1;
          levelImg ='<img src="/images/check_out/sponsor_silver.png" width="100px" style=" text-align: right;">'
-                    +"&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 10% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>10% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
             document.getElementById('customer-discount').innerHTML = "10% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
          subTotal = subTotal - (subTotal * discount);
     } else if ((hisPoints >= 50000) && (hisPoints < 100000)) {// golden account
         discount = 0.2;
         levelImg = '<img src="/images/check_out/sponsor_gold.png" width="100px" style=" text-align: right;">'
-                    +"&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 20% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>20% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
         document.getElementById('customer-discount').innerHTML = "20% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
       
                     subTotal = subTotal - (subTotal * discount);
     }else if (hisPoints >= 100000){// diamond account
         discount = 0.3;
         levelImg = '<img src="/images/check_out/diamond-level.png" width="100px" style=" text-align: right;">'
-                    +"&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 30% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>30% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
         document.getElementById('customer-discount').innerHTML = "30% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
                     subTotal = subTotal - (subTotal * discount);
@@ -155,7 +189,6 @@ function chooseLevel() {
         
     };
 
-    subTotal -= (hisPoints/ 5); 
     let tax = subTotal * 0.05;
     let total = subTotal + tax;
     document.getElementById('level').innerHTML += levelImg 
@@ -170,6 +203,7 @@ function chooseLevel() {
 const dialog = document.getElementById("myDialog");
 
 let payment = {
+        date: "",
         custName: "name",
         email : "email",
         phone : "phone",
@@ -187,6 +221,8 @@ let payment = {
 };
 
 function fillInfo(fieldName){
+
+    payment.date = new Date();
 
     if (fieldName == "name"){
         payment.custName = document.getElementById("name").value;
@@ -219,11 +255,16 @@ function fillInfo(fieldName){
     }else if (fieldName == "amount"){
         payment.amount = document.getElementById("amount").value;
         document.getElementById("customer-amount").innerHTML = '$ '+document.getElementById("amount").value+' CAD';
+        document.getElementById("customer-newPoints").innerHTML = Math.floor(Number(document.getElementById("amount").value) /5);
+
+        document.getElementById("customer-PointsAfterPayment").innerHTML = Number(document.getElementById("customer-newPoints").innerHTML) + Number(document.getElementById("points").value);
+
         
     }else if (fieldName == "points"){
-        payment.amount = document.getElementById("points").value;
+        payment.points = document.getElementById("points").value;
         document.getElementById("customer-points").innerHTML = document.getElementById("points").value;
-        document.getElementById("customer-points-value").innerHTML = '$ '+((document.getElementById("points").value)/ 5).toFixed(2)+' CAD';
+        document.getElementById("customer-PointsAfterPayment").innerHTML = Number(document.getElementById("customer-newPoints").innerHTML) + Number(document.getElementById("points").value);
+
         chooseLevel();
     
     }else if (fieldName == "cardNumber"){
