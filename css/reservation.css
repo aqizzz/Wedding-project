@@ -100,14 +100,14 @@
     border-radius: 15px;
     position: relative;
     
-    width: 520px;
+    width: 530px;
     z-index: 0;
     
 }
 
 
 .pform fieldset:first-child {
-    margin-right: 60px;
+    margin-right: 100px;
 }
 
 
