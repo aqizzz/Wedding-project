@@ -168,8 +168,8 @@ document.getElementById("register-form").addEventListener("submit", function(eve
   msgBoxReg.innerHTML = "";
 
   try {
-    if (username === "admin" ) throw "Username exists";
-    if (email === "admin@email.com" ) throw "Email address exists";
+    if (username === "isabella123" || username === "john123" || username === "mary123") throw "Username exists";
+    if (email === "me@email.com" || email === "johnsmith@gmail.com" || email === "mary@brown.com" ) throw "Email address exists";
     if (password === username ) throw "Password can not be same as username";
     if (password.length < 8 ) throw "Password length must be atleast 8 characters"
     if (confirmPassword !== password ) throw "Passwords must be same";
