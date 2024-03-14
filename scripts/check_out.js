@@ -12,13 +12,9 @@ function startup() {
     document.getElementById('second').innerHTML=  today();
     document.getElementById('txtDateNow').value = today();
 
-    // via query parameters - get 
-    const params = (new URL(document.location)).searchParams;
-
-    const cust_amount = params.get('estimated_total');
-    
     // via local storage 
-    document.getElementById("amount").value = cust_amount;
+    document.getElementById("amount").value = Number(localStorage.getItem('estimated_total'));
+
     document.getElementById("customer-amount").innerHTML = '$ '+document.getElementById("amount").value+' CAD';
     document.getElementById("customer-newPoints").innerHTML = Math.floor(Number(document.getElementById("amount").value) /5);
     document.getElementById("customer-PointsAfterPayment").innerHTML = document.getElementById("customer-newPoints").innerHTML + document.getElementById("points").innerHTML;
