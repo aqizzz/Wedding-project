@@ -40,7 +40,6 @@ function addUserBanner() {
       } // end else block
   } 
 
-
   let userBanner = document.createElement("div");
   userBanner.className = "user-banner";
 
@@ -63,13 +62,11 @@ function addUserBanner() {
   userProfileLink.title = "Click to view your profile";
   userBannerLeft.insertAdjacentElement('beforeend', userProfileLink);
 
-
   let userIconSpan = document.createElement("span");
   userIconSpan.className = "banner-icon";
   userIconSpan.innerHTML = '<ion-icon name="happy"></ion-icon>';
   userIconSpan.setAttribute("id", "user-icon");
   userBannerLeft.insertAdjacentElement('beforeend', userIconSpan);
-  
 
   let userBannerRight = document.createElement("div");
   userBannerRight.className = "user-banner-right";
@@ -81,12 +78,11 @@ function addUserBanner() {
   tropyIconSpan.setAttribute("id", "tropy");
   userBannerRight.insertAdjacentElement('beforeend', tropyIconSpan);
 
-  let messageRight = document.createElement("span")
+  let messageRight = document.createElement("span");
   messageRight.textContent = "points to next level: ";
   userBannerRight.insertAdjacentElement('beforeend', messageRight);
 
-  let pointsToNextLevel = document.createElement("span")
-
+  let pointsToNextLevel = document.createElement("span");
   userBannerRight.insertAdjacentElement('beforeend', pointsToNextLevel);
 
   let clientInfo = JSON.parse(window.localStorage.getItem("userInfo"));
@@ -112,13 +108,10 @@ function addUserBanner() {
 
   document.getElementsByClassName("web-header")[0].insertAdjacentElement('afterend', userBanner);
 
-  changeIcon();
   setInterval(changeIcon, 2000);
 }
 
-
 function changeIcon() {
-  
   // check the value of the icon 
   if (userIcon == 'filled') {
       document.getElementById('user-icon').innerHTML = '<ion-icon name="happy"></ion-icon>';

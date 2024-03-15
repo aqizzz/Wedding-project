@@ -180,8 +180,6 @@ document.getElementById("register-form").addEventListener("submit", function(eve
   }
 });
 
-
-
 function logOut() {
   window.localStorage.removeItem("userName");
   window.localStorage.removeItem("userInfo");
