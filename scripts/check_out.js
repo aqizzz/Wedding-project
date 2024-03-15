@@ -72,7 +72,6 @@ function startup() {
     fillInfo("zip");
 
 
-
     let total_points = obj.totalPoint;
 
     document.getElementById("amount").value = Number(localStorage.getItem('estimated_total'));
@@ -87,7 +86,7 @@ function startup() {
     document.getElementById("customer-PointsAfterPayment").innerHTML = newPoints + Number(document.getElementById("points").value);
     
     
-    document.getElementById('form3').onsubmit = store;
+    document.getElementById('form3').onsubmit = store();
 
 }// end function startup
 
@@ -142,6 +141,7 @@ function handleSubmit() {
  * validate user data entry
  */
 function validateForm() {
+    
    if (document.getElementById("name").value === "") {
     
     window.alert('You must enter your name.');
@@ -222,6 +222,7 @@ function validateForm() {
    }// end function validateForm
 
 function chooseLevel() {
+    
     let levelImg='';
     let hisPoints = document.getElementById('points').value;
     let subTotal = Number(document.getElementById('amount').value) ;
@@ -231,21 +232,21 @@ function chooseLevel() {
 
      if ( hisPoints > 25000 && hisPoints < 50000){// silver account
          discount = 0.05;
-         levelImg ='<img src="/images/check_out/sponsor_silver.png" width="100px" style=" text-align: right;">'
+         levelImg ='<img src="images/check_out/sponsor_silver.png" width="100px" style=" text-align: right;">'
                     +"<br>5% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
             document.getElementById('customer-discount').innerHTML = "5% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
          subTotal = subTotal - (subTotal * discount);
     } else if ((hisPoints >= 50000) && (hisPoints < 100000)) {// golden account
         discount = 0.1;
-        levelImg = '<img src="/images/check_out/sponsor_gold.png" width="100px" style=" text-align: right;">'
+        levelImg = '<img src="images/check_out/sponsor_gold.png" width="100px" style=" text-align: right;">'
                     +"<br>10% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
         document.getElementById('customer-discount').innerHTML = "10% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
       
                     subTotal = subTotal - (subTotal * discount);
     }else if (hisPoints >= 100000){// diamond account
         discount = 0.15;
-        levelImg = '<img src="/images/check_out/diamond-level.png" width="100px" style=" text-align: right;">'
+        levelImg = '<img src="images/check_out/diamond-level.png" width="100px" style=" text-align: right;">'
                     +"<br>15% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
         document.getElementById('customer-discount').innerHTML = "15% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
@@ -264,6 +265,7 @@ function chooseLevel() {
     document.getElementById('customer-subTotal').innerHTML = " $"+ subTotal.toFixed(2) + " CAD";
     document.getElementById('customer-tax').innerHTML = " $"+ tax.toFixed(2) + " CAD";
     document.getElementById('customer-total').innerHTML = " $"+ total.toFixed(2) + " CAD";
+
 }// end chooseLevel
 
 const dialog = document.getElementById("myDialog");
@@ -297,7 +299,7 @@ function fillInfo(fieldName){
     }else  if (fieldName == "email"){
         payment.email = document.getElementById("email").value;
         document.getElementById("customer-email").innerHTML = document.getElementById("email").value;
-    
+        
     }else  if (fieldName == "phone"){
         payment.email = document.getElementById("phone").value;
         document.getElementById("customer-phone").innerHTML = document.getElementById("phone").value;
