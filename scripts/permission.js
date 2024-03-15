@@ -5,6 +5,9 @@ Need register link to a new page. When clicked to register, replace current page
 After registration, link to home page. client can choose to log in again.*/
 'use strict';
 
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const usernameRegex = /^[a-z0-9_-]{5,15}$/;
+
 let userName = window.localStorage.getItem("userName");
 
 window.addEventListener('load', addLoginButton, false);
@@ -219,7 +222,8 @@ document.getElementById("register-form").addEventListener("submit", function(eve
     if (username === "isabella123" || username === "john123" || username === "mary123") throw "Username exists";
     if (email === "me@email.com" || email === "johnsmith@gmail.com" || email === "mary@brown.com" ) throw "Email address exists";
     if (password === username ) throw "Password can not be same as username";
-    if (password.length < 8 ) throw "Password length must be atleast 8 characters"
+    if (!usernameRegex.test(username) ) throw "Username must be between 5 and 15 characters long, containing only lowercase letters, numbers, underscores, and dashes";
+    if (!passwordRegex.test(password) ) throw "Password must be minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character";
     if (confirmPassword !== password ) throw "Passwords must be same";
     alert("Registration successful! Please log in.");
     document.querySelector('.wrapper').classList.remove('active');
