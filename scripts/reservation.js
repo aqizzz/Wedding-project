@@ -329,6 +329,9 @@ const items = [];
       e.preventDefault();
       if (e.target.tagName === 'A') {
         items.splice(e.target.dataset.id, 1);
+        if(items.length === 0){
+          localStorage.setItem('estimated_total', 0);
+        }
         render()
       }
     }
