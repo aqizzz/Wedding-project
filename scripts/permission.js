@@ -5,6 +5,9 @@ Need register link to a new page. When clicked to register, replace current page
 After registration, link to home page. client can choose to log in again.*/
 'use strict';
 
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const usernameRegex = /^[a-z0-9_-]{5,15}$/;
+
 let userName = window.localStorage.getItem("userName");
 
 window.addEventListener('load', addLoginButton, false);
@@ -87,7 +90,7 @@ function createLoginModal() {
                           <label><input type="checkbox" id="agreeTerms">I agree to the terms & conditions</label>
                       </div>
                       <span id="msgBoxReg"></span>
-                      <button type="submit" class="btn">Register</button>
+                      <button type="submit" class="btn" disabled="true">Register</button>
                       <div class="login-register">
                           <p>Already have an account? <a href="#" class="login-link">Log in</a></p>
                       </div>
@@ -134,6 +137,20 @@ function openLoginModal() {
   modal.style.display = "block";
 }
 
+const agreeTerms = document.getElementById('agreeTerms');
+const regBtn = document.querySelectorAll('.btn')[1];
+
+agreeTerms.addEventListener('change', function(e) {
+  e.preventDefault();
+
+  if (agreeTerms.checked) {
+    regBtn.disabled = false;
+  } else {
+    regBtn.disabled = true;
+  }
+
+});
+
 document.getElementById("login-form").addEventListener("submit", function(event) {
   event.preventDefault();
 
@@ -141,12 +158,46 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   let password = document.getElementById("password").value;
   let msgBox = document.getElementById("msgBox");
   let profilePage = "user_profile.html";
+  let esto = document.getElementsByClassName("esto")[0];
   msgBox.innerHTML = "";
 
   try {
     if (!((username === "isabella123" && username === "john123" && username === "mary123") || password === "admin")) throw "Wrong username or password";
         window.localStorage.setItem("userName", username);
-        if (window.location.pathname === "/reservation.html") {
+
+        var clientInfo = {};
+        let storageKey = "userInfo";
+        /**
+         * loads client data from clients.json file
+         */
+        function loadClientData() {
+            let xhr = new XMLHttpRequest();
+            if (xhr) {
+                xhr.open("get", 'data/clients.json');
+
+                // passing data to the server
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        let json = xhr.responseText;
+                        const obj = JSON.parse(json);
+                        let filteredData = obj.filter(function(i) {
+                            return i.userName === username;
+                        });
+                        let storedData = window.localStorage.getItem(storageKey);
+                        if (storedData === null) {
+                            window.localStorage.setItem(storageKey, JSON.stringify(filteredData[0]));
+                            storedData = window.localStorage.getItem(storageKey);
+                        }
+                        clientInfo = JSON.parse(storedData);
+                        getPersonalInfo();
+                    }
+                }
+                xhr.send();
+            }
+        }
+
+        if (window.location.pathname === "/reservation.html" && esto) {
+          loadClientData();
           window.location.href = "check_out.html";
         }else{
           window.location.href = profilePage;
@@ -171,7 +222,8 @@ document.getElementById("register-form").addEventListener("submit", function(eve
     if (username === "isabella123" || username === "john123" || username === "mary123") throw "Username exists";
     if (email === "me@email.com" || email === "johnsmith@gmail.com" || email === "mary@brown.com" ) throw "Email address exists";
     if (password === username ) throw "Password can not be same as username";
-    if (password.length < 8 ) throw "Password length must be atleast 8 characters"
+    if (!usernameRegex.test(username) ) throw "Username must be between 5 and 15 characters long, containing only lowercase letters, numbers, underscores, and dashes";
+    if (!passwordRegex.test(password) ) throw "Password must be minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character";
     if (confirmPassword !== password ) throw "Passwords must be same";
     alert("Registration successful! Please log in.");
     document.querySelector('.wrapper').classList.remove('active');
@@ -183,7 +235,7 @@ document.getElementById("register-form").addEventListener("submit", function(eve
 function logOut() {
   window.localStorage.removeItem("userName");
   window.localStorage.removeItem("userInfo");
-  if (window.location.pathname === "/user_profile.html") {
+  if (window.location.pathname === "/user_profile.html" || window.location.pathname === "/check_out.html") {
     window.location.href = "index_en.html";
   }else{
     window.location.reload();

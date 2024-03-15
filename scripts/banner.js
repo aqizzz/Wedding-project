@@ -85,26 +85,28 @@ function addUserBanner() {
   let pointsToNextLevel = document.createElement("span");
   userBannerRight.insertAdjacentElement('beforeend', pointsToNextLevel);
 
-  let clientInfo = JSON.parse(window.localStorage.getItem("userInfo"));
-  let userPoint = parseInt(clientInfo.totalPoint);
+  if(window.localStorage.getItem("userInfo")){
+    let clientInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+    let userPoint = parseInt(clientInfo.totalPoint);
 
-  if (userPoint >= 100000){// diamond account
-    tropyIconSpan.innerHTML = '<ion-icon name="diamond"></ion-icon>';
-    messageRight.textContent = "You are a diamond client!";
+    if (userPoint >= 100000){// diamond account
+      tropyIconSpan.innerHTML = '<ion-icon name="diamond"></ion-icon>';
+      messageRight.textContent = "You are a diamond client!";
 
-  } else if (userPoint >= 50000) {// golden account
-    tropyIconSpan.style.color = 'gold';
-    pointsToNextLevel.textContent = 100000 - userPoint;
+    } else if (userPoint >= 50000) {// golden account
+      tropyIconSpan.style.color = 'gold';
+      pointsToNextLevel.textContent = 100000 - userPoint;
 
-  } else if ( userPoint > 25000 ){// silver account
-    tropyIconSpan.style.color = 'silver';
-    pointsToNextLevel.textContent = 50000 - userPoint;
-   
-  } else {
-    tropyIconSpan.style.color = 'BurlyWood';
-    pointsToNextLevel.textContent = 25000 - userPoint;
+    } else if ( userPoint > 25000 ){// silver account
+      tropyIconSpan.style.color = 'silver';
+      pointsToNextLevel.textContent = 50000 - userPoint;
     
-  };
+    } else {
+      tropyIconSpan.style.color = 'BurlyWood';
+      pointsToNextLevel.textContent = 25000 - userPoint;
+      
+    };
+  }
 
   document.getElementsByClassName("web-header")[0].insertAdjacentElement('afterend', userBanner);
 
