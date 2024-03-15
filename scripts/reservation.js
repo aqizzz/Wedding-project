@@ -1,8 +1,8 @@
-'use strict;'
 
-
-    const data = localStorage.getItem('reservation_list');
-    const items = data ? JSON.parse(data) : [];
+    
+    
+    const resData = localStorage.getItem('reservation_list');
+    const items = resData ? JSON.parse(resData) : [];
     const pinfo = document.querySelector('.pinfo');
     const pqtn = document.querySelector('.pqtn');
     const stard = document.querySelector('.startd');
@@ -77,6 +77,14 @@
         stard.min = minStartString;
         cstard.min = minStartString;
 
+
+        let minEndtDate = new Date().setDate(new Date().getDate() + 2);
+        let minEndDateObject = new Date(minEndtDate);
+
+        let minEndString = minEndDateObject.toISOString().split('T')[0];
+        endd.min = minEndString;
+        cendd.min = minEndString;
+
     });
 
     endd.addEventListener('click', function(){
@@ -90,10 +98,10 @@
       
       let startDateObject = new Date(startDate);
 
-      console.log(startDateObject); 
+      
      let minEndDate = startDateObject.setDate(startDateObject.getDate() + 1);
      let minEndDateObject = new Date(minEndDate);
-     console.log(minEndDateObject);
+     
       
 
       let endString = minEndDateObject.toISOString().split('T')[0];
@@ -413,20 +421,27 @@
 
       else {
         const sub = document.querySelector('.iList div input');
-      diabg.style.display='block';
-      dia.style.display='block';
+      // diabg.style.display='block';
+      // dia.style.display='block';
+      $(".diabg").show();
+      $(".dia").show();
+
       login.addEventListener('click',function(e){
+
         e.preventDefault();
-        diabg.style.display='none';
-        dia.style.display = 'none';
+        $(".diabg").hide();
+        $(".dia").hide();
         openLoginModal();
+
       });
       guest.addEventListener('click', function(e){
-        diabg.style.display='none';
-        dia.style.display = 'none';
+
+        $(".diabg").hide();
+        $(".dia").hide();
         e.preventDefault();
         iList.removeEventListener('click', del);
         sub.click();
+        
       });
       }
 
@@ -435,6 +450,10 @@
 
     close.addEventListener('click', function(e){
       e.preventDefault();
-      diabg.style.display='none';
-      dia.style.display = 'none';
+    //  diabg.style.display='none';
+    //  dia.style.display = 'none';
+    
+      $(".diabg").hide();
+      $(".dia").hide();
+
     });
