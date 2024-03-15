@@ -71,6 +71,11 @@
 .welcome p:last-child {
   font-family: "Dancing Script";
 }
+
+#adviceDiv h5{
+  font-family: "Dancing Script";
+}
+
 @media (max-width: 575px) {
   .welcome p:first-child {
     font-size: 1.4rem;
