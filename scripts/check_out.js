@@ -230,24 +230,24 @@ function chooseLevel() {
     document.getElementById('level').innerHTML =" &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp";
 
      if ( hisPoints > 25000 && hisPoints < 50000){// silver account
-         discount = 0.1;
+         discount = 0.05;
          levelImg ='<img src="/images/check_out/sponsor_silver.png" width="100px" style=" text-align: right;">'
-                    +"<br>10% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
-            document.getElementById('customer-discount').innerHTML = "10% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>5% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+            document.getElementById('customer-discount').innerHTML = "5% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
          subTotal = subTotal - (subTotal * discount);
     } else if ((hisPoints >= 50000) && (hisPoints < 100000)) {// golden account
-        discount = 0.2;
+        discount = 0.1;
         levelImg = '<img src="/images/check_out/sponsor_gold.png" width="100px" style=" text-align: right;">'
-                    +"<br>20% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
-        document.getElementById('customer-discount').innerHTML = "20% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>10% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+        document.getElementById('customer-discount').innerHTML = "10% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
       
                     subTotal = subTotal - (subTotal * discount);
     }else if (hisPoints >= 100000){// diamond account
-        discount = 0.3;
+        discount = 0.15;
         levelImg = '<img src="/images/check_out/diamond-level.png" width="100px" style=" text-align: right;">'
-                    +"<br>30% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
-        document.getElementById('customer-discount').innerHTML = "30% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>15% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+        document.getElementById('customer-discount').innerHTML = "15% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
                     subTotal = subTotal - (subTotal * discount);
     }else{
