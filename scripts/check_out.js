@@ -15,65 +15,65 @@ function startup() {
     // via local storage 
     let obj = JSON.parse(localStorage.getItem('userInfo'));
     
+    if (obj) {
+        // name
+        $('#name').val(obj.fullName) ;
+        fillInfo("name");
 
-    // name
-    $('#name').val(obj.fullName) ;
-    fillInfo("name");
+        // email
+        $("#email-input").val(obj.emailAddress);
+        fillInfo("email");
 
-    // email
-    $("#email-input").val(obj.emailAddress);
-    fillInfo("email");
+        // phone
+        $("#phone").val(obj.phoneNumber);
+        fillInfo("phone");
 
-    // phone
-    $("#phone").val(obj.phoneNumber);
-    fillInfo("phone");
+        // address
+        $("#address").val(obj.street) ;
+        fillInfo("address");
 
-    // address
-    $("#address").val(obj.street) ;
-    fillInfo("address");
+        // state
+        if (obj.province== 'QC') {$("#state").val('Quebec');
+        }else if (obj.province== 'AL'){$("#state").val( 'Alberta');
+        }else if (obj.province== 'MA'){$("#state").val('Manitoba');
+        }else if (obj.province== 'BC'){$("#state").val('British Columbia');
+        }else if (obj.province== 'NB'){$("#state").val('New Brunswick');
+        }else if (obj.province== 'NL'){$("#state").val('Newfoundland and Labrador');
+        }else if (obj.province== 'NS'){$("#state").val('Nova Scotia');
+        }else if (obj.province== 'ON'){$("#state").val('Ontario');
+        }else if (obj.province== 'PE'){$("#state").val('Prince Edward Island');
+        }else if (obj.province== 'SK'){$("#state").val('Saskatchewan');
+        }else if (obj.province== 'NT'){$("#state").val('Northwest Territories');
+        }else if (obj.province== 'NU'){$("#state").val('Nunavut');
+        }else if (obj.province== 'YK'){$("#state").val('Yukon');
+        }else {$("#state").val('');
+        }
+        fillInfo("state");
 
-    // state
-    if (obj.province== 'QC') {$("#state").val('Quebec');
-    }else if (obj.province== 'AL'){$("#state").val( 'Alberta');
-    }else if (obj.province== 'MA'){$("#state").val('Manitoba');
-    }else if (obj.province== 'BC'){$("#state").val('British Columbia');
-    }else if (obj.province== 'NB'){$("#state").val('New Brunswick');
-    }else if (obj.province== 'NL'){$("#state").val('Newfoundland and Labrador');
-    }else if (obj.province== 'NS'){$("#state").val('Nova Scotia');
-    }else if (obj.province== 'ON'){$("#state").val('Ontario');
-    }else if (obj.province== 'PE'){$("#state").val('Prince Edward Island');
-    }else if (obj.province== 'SK'){$("#state").val('Saskatchewan');
-    }else if (obj.province== 'NT'){$("#state").val('Northwest Territories');
-    }else if (obj.province== 'NU'){$("#state").val('Nunavut');
-    }else if (obj.province== 'YK'){$("#state").val('Yukon');
-    }else {$("#state").val('');
+        // city
+        $("#city").val(obj.city);
+        fillInfo("city");
+
+        // zip
+        $("#zip").val(obj.postalCode);
+        fillInfo("zip");
+
+        let total_points = obj.totalPoint;
+
+        $("#points").val(Number(total_points)) ;
+        chooseLevel();
+        $("#customer-points").text($("#points").val()) ;
+        let newPoints = Math.floor(Number($("#amount").val()) /5);
+        $("#customer-newPoints").text(newPoints);
+        $("#customer-PointsAfterPayment").text(newPoints + Number($("#points").val())) ;
+
     }
-    fillInfo("state");
-
-    // city
-    $("#city").val(obj.city);
-    fillInfo("city");
-
-    // zip
-    $("#zip").val(obj.postalCode);
-    fillInfo("zip");
-
-
-    let total_points = obj.totalPoint;
 
     $("#amount").val(Number(localStorage.getItem('estimated_total')));
 
     $("#customer-amount").text('$ '+$("#amount").val()+' CAD');
     
-    $("#points").val(Number(total_points)) ;
-    chooseLevel();
-    $("#customer-points").text($("#points").val()) ;
-    let newPoints = Math.floor(Number($("#amount").val()) /5);
-    $("#customer-newPoints").text(newPoints);
-    $("#customer-PointsAfterPayment").text(newPoints + Number($("#points").val())) ;
-    
-    
-    $('#form3').onsubmit = store();
+    $('#form3').onsubmit = store;
 
 }// end function startup
 
@@ -113,15 +113,16 @@ function sendEmailInvoice() {
     }
 }
 
-function handleSubmit() {
+// function handleSubmit() {
     
-    const cust_amount = $('#estimated_total').val();
+//     const cust_amount = $('#estimated_total').val();
     
-    // set the estimated_total into the local storage 
-    localStorage.setItem('Amount', cust_amount);
+//     // set the estimated_total into the local storage 
+//     localStorage.setItem('Amount', cust_amount);
    
-    return;
-}
+//     return;
+// }
+
 /**
  * validate user data entry
  */
