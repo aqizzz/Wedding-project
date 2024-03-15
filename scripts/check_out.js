@@ -12,16 +12,79 @@ function startup() {
     document.getElementById('second').innerHTML=  today();
     document.getElementById('txtDateNow').value = today();
 
-    // via query parameters - get 
-    const params = (new URL(document.location)).searchParams;
-
-    const cust_amount = params.get('estimated_total');
-    
     // via local storage 
-    document.getElementById("amount").value = cust_amount;
+    let obj = JSON.parse(localStorage.getItem('userInfo'));
+
+    // name
+    document.getElementById("name").value = obj.fullName; 
+    fillInfo("name");
+
+    // email
+    document.getElementById("email").value = obj.emailAddress;
+    fillInfo("email");
+
+    // phone
+    document.getElementById("phone").value = obj.phoneNumber;
+    fillInfo("phone");
+
+    // address
+    document.getElementById("address").value = obj.street;
+    fillInfo("address");
+
+    // state
+    if (obj.province== 'QC') {
+        document.getElementById("state").value = 'Quebec';
+    }else if (obj.province== 'AL'){
+        document.getElementById("state").value = 'Alberta';
+    }else if (obj.province== 'MA'){
+        document.getElementById("state").value = 'Manitoba';
+    }else if (obj.province== 'BC'){
+        document.getElementById("state").value = 'British Columbia';
+    }else if (obj.province== 'NB'){
+        document.getElementById("state").value = 'New Brunswick';
+    }else if (obj.province== 'NL'){
+        document.getElementById("state").value = 'Newfoundland and Labrador';
+    }else if (obj.province== 'NS'){
+        document.getElementById("state").value = 'Nova Scotia';
+    }else if (obj.province== 'ON'){
+        document.getElementById("state").value = 'Ontario';
+    }else if (obj.province== 'PE'){
+        document.getElementById("state").value = 'Prince Edward Island';
+    }else if (obj.province== 'SK'){
+        document.getElementById("state").value = 'Saskatchewan';
+    }else if (obj.province== 'NT'){
+        document.getElementById("state").value = 'Northwest Territories';
+    }else if (obj.province== 'NU'){
+        document.getElementById("state").value = 'Nunavut';
+    }else if (obj.province== 'YK'){
+        document.getElementById("state").value = 'Yukon';
+    }else {
+        document.getElementById("state").value = '';
+    }
+    fillInfo("state");
+
+    // city
+    document.getElementById("city").value = obj.city;
+    fillInfo("city");
+
+    // zip
+    document.getElementById("zip").value = obj.postalCode;
+    fillInfo("zip");
+
+
+
+    let total_points = obj.totalPoint;
+
+    document.getElementById("amount").value = Number(localStorage.getItem('estimated_total'));
+
     document.getElementById("customer-amount").innerHTML = '$ '+document.getElementById("amount").value+' CAD';
-    document.getElementById("customer-newPoints").innerHTML = Math.floor(Number(document.getElementById("amount").value) /5);
-    document.getElementById("customer-PointsAfterPayment").innerHTML = document.getElementById("customer-newPoints").innerHTML + document.getElementById("points").innerHTML;
+    
+    document.getElementById("points").value = Number(total_points);
+    chooseLevel();
+    document.getElementById("customer-points").innerHTML = document.getElementById("points").value;
+    let newPoints = Math.floor(Number(document.getElementById("amount").value) /5);
+    document.getElementById("customer-newPoints").innerHTML = newPoints;
+    document.getElementById("customer-PointsAfterPayment").innerHTML = newPoints + Number(document.getElementById("points").value);
     
     
     document.getElementById('form3').onsubmit = store;
@@ -31,7 +94,10 @@ function startup() {
 function store() {
   let key = new Date(); 
     if (validateForm()) {
-      
+        payment.points = Number(document.getElementById("customer-PointsAfterPayment").innerHTML);
+
+        JSON.parse(localStorage.setItem('userInfo').totalPoint) = Number(document.getElementById("customer-PointsAfterPayment").innerHTML);
+
         window.localStorage.setItem(key, JSON.stringify(payment)); // converting object to string
     }
 } // end function store 
@@ -164,24 +230,24 @@ function chooseLevel() {
     document.getElementById('level').innerHTML =" &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp";
 
      if ( hisPoints > 25000 && hisPoints < 50000){// silver account
-         discount = 0.1;
+         discount = 0.05;
          levelImg ='<img src="/images/check_out/sponsor_silver.png" width="100px" style=" text-align: right;">'
-                    +"<br>10% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
-            document.getElementById('customer-discount').innerHTML = "10% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>5% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+            document.getElementById('customer-discount').innerHTML = "5% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
          subTotal = subTotal - (subTotal * discount);
     } else if ((hisPoints >= 50000) && (hisPoints < 100000)) {// golden account
-        discount = 0.2;
+        discount = 0.1;
         levelImg = '<img src="/images/check_out/sponsor_gold.png" width="100px" style=" text-align: right;">'
-                    +"<br>20% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
-        document.getElementById('customer-discount').innerHTML = "20% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>10% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+        document.getElementById('customer-discount').innerHTML = "10% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
       
                     subTotal = subTotal - (subTotal * discount);
     }else if (hisPoints >= 100000){// diamond account
-        discount = 0.3;
+        discount = 0.15;
         levelImg = '<img src="/images/check_out/diamond-level.png" width="100px" style=" text-align: right;">'
-                    +"<br>30% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
-        document.getElementById('customer-discount').innerHTML = "30% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
+                    +"<br>15% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
+        document.getElementById('customer-discount').innerHTML = "15% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
                     subTotal = subTotal - (subTotal * discount);
     }else{

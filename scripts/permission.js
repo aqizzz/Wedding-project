@@ -180,10 +180,12 @@ document.getElementById("register-form").addEventListener("submit", function(eve
   }
 });
 
-
-
 function logOut() {
   window.localStorage.removeItem("userName");
   window.localStorage.removeItem("userInfo");
-  window.location.reload();
+  if (window.location.pathname === "/user_profile.html") {
+    window.location.href = "index_en.html";
+  }else{
+    window.location.reload();
+  }
 }
