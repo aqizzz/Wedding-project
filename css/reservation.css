@@ -164,7 +164,7 @@
 
 .add,
 .cadd {
-    width: 50px;
+    width: 350px;
     height: 28px;
     background-color: #e1a8b1;
     text-align: center;
@@ -178,16 +178,19 @@
 .promptu,
 .promptd {
 
+    color: #e1a8b1;
+    font-size: 18px;
+    /* width: 250px;
     visibility: hidden;
     background-color: #e1a8b1;
     color:#fff;
     padding: 0 10px;
     border-radius: 5px;
-    position: relative;
+    position: relative; */
 }
 
 
-  .promptd::after,
+  /* .promptd::after,
   .promptu::after{
     position: absolute;
     content: "";
@@ -198,7 +201,8 @@
     border-top: 5px solid transparent;
     border-right: 6px solid #e1a8b1;
     border-bottom: 5px solid transparent;
-  }
+    
+  } */
 
 
 
