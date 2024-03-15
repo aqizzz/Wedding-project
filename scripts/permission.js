@@ -141,11 +141,13 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   let password = document.getElementById("password").value;
   let msgBox = document.getElementById("msgBox");
   let profilePage = "user_profile.html";
+  let esto = document.getElementsByClassName("esto")[0];
   msgBox.innerHTML = "";
 
   try {
     if (!((username === "isabella123" && username === "john123" && username === "mary123") || password === "admin")) throw "Wrong username or password";
         window.localStorage.setItem("userName", username);
+
         var clientInfo = {};
         let storageKey = "userInfo";
         /**
@@ -177,12 +179,9 @@ document.getElementById("login-form").addEventListener("submit", function(event)
             }
         }
 
-        if (window.location.pathname === "/reservation.html") {
+        if (window.location.pathname === "/reservation.html" && esto) {
           loadClientData();
-          setTimeout(function() {
-            window.location.href = "check_out.html";
-          }, 0);
-          
+          window.location.href = "check_out.html";
         }else{
           window.location.href = profilePage;
         }
