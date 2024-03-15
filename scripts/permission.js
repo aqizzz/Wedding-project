@@ -87,7 +87,7 @@ function createLoginModal() {
                           <label><input type="checkbox" id="agreeTerms">I agree to the terms & conditions</label>
                       </div>
                       <span id="msgBoxReg"></span>
-                      <button type="submit" class="btn">Register</button>
+                      <button type="submit" class="btn" disabled="true">Register</button>
                       <div class="login-register">
                           <p>Already have an account? <a href="#" class="login-link">Log in</a></p>
                       </div>
@@ -133,6 +133,20 @@ window.onclick = function(event) {
 function openLoginModal() {
   modal.style.display = "block";
 }
+
+const agreeTerms = document.getElementById('agreeTerms');
+const regBtn = document.querySelectorAll('.btn')[1];
+
+agreeTerms.addEventListener('change', function(e) {
+  e.preventDefault();
+
+  if (agreeTerms.checked) {
+    regBtn.disabled = false;
+  } else {
+    regBtn.disabled = true;
+  }
+
+});
 
 document.getElementById("login-form").addEventListener("submit", function(event) {
   event.preventDefault();
