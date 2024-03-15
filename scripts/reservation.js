@@ -1,6 +1,8 @@
-'use strict;'
 
-const items = [];
+    
+    
+    const resData = localStorage.getItem('reservation_list');
+    const items = resData ? JSON.parse(resData) : [];
     const pinfo = document.querySelector('.pinfo');
     const pqtn = document.querySelector('.pqtn');
     const stard = document.querySelector('.startd');
@@ -12,7 +14,7 @@ const items = [];
     const promptd = document.querySelector('.promptd');
     
 
-    const today = Date.now();
+    const today = new Date();
 
     const cinfo = document.querySelector('.cinfo');
     const cpqtn = document.querySelector('.cpqtn');
@@ -31,7 +33,7 @@ const items = [];
 
     const guest = document.querySelector('.dia .guest');
     const login = document.querySelector('.dia .login');
-    console.log(login);
+ 
     
 
 
@@ -42,6 +44,12 @@ const items = [];
     let xhr = new XMLHttpRequest();
     let pobj;
     
+
+    // function minEndDate(date){
+    //   let result = new Date(date); 
+    //   result.setDate(result.getDate+1);
+    //   return result; 
+    // }
 
     
     window.addEventListener('load',function(){
@@ -58,28 +66,90 @@ const items = [];
           option.innerText = pobj.rentals[i].inner;
           pinfo.appendChild(option);
         }
+
+        // let todayObject = new Date();
+        // console.log(new Date());
+        let minStartDate = new Date().setDate(new Date().getDate() + 1);
+        let minStartDateObject = new Date(minStartDate);
         
-      
+
+        let minStartString = minStartDateObject.toISOString().split('T')[0];
+        stard.min = minStartString;
+        cstard.min = minStartString;
+
+
+        let minEndtDate = new Date().setDate(new Date().getDate() + 2);
+        let minEndDateObject = new Date(minEndtDate);
+
+        let minEndString = minEndDateObject.toISOString().split('T')[0];
+        endd.min = minEndString;
+        cendd.min = minEndString;
+
     });
+
+    endd.addEventListener('click', function(){
+
+      
+      if(stard.value ===''){
+        return;
+      }
+
+      let startDate = stard.value;
+      
+      let startDateObject = new Date(startDate);
+
+      
+     let minEndDate = startDateObject.setDate(startDateObject.getDate() + 1);
+     let minEndDateObject = new Date(minEndDate);
+     
+      
+
+      let endString = minEndDateObject.toISOString().split('T')[0];
+      endd.min = endString;
+
+    });
+
+
+    cendd.addEventListener('click', function(){
+
+      
+      if(cstard.value ===''){
+        return;
+      }
+
+      let startDate = cstard.value;
+      
+      let startDateObject = new Date(startDate);
+
+     let minEndDate = startDateObject.setDate(startDateObject.getDate() + 1);
+     let minEndDateObject = new Date(minEndDate);
+      
+
+      let endString = minEndDateObject.toISOString().split('T')[0];
+      cendd.min = endString;
+
+    });
+
+
 
     
 
     pqtn.addEventListener('click',function(){
-      if(promptu.innerText === 'Please enter the quantity!' || promptu.innerText === 'Please enter a positive integer!'){
+      if(promptu.innerText === 'Please enter the quantity between 1 and 100!'){
          promptu.style.visibility = 'hidden';
       }
       
     });
 
     stard.addEventListener('click',function(){
-      if(promptu.innerText === 'Please enter the start date!' || promptu.innerText === 'Please enter a date after today!'){
+      if(promptu.innerText === 'Please enter the start date!'){
         promptu.style.visibility = 'hidden';
       }
       
     });
 
     endd.addEventListener('click',function(){
-      if(promptu.innerText === 'Please enter the end date!' || promptu.innerText === 'End date should be after the start date!'){
+      if(promptu.innerText === 'Please enter the end date!'){
         promptu.style.visibility = 'hidden';
       }
       
@@ -87,21 +157,21 @@ const items = [];
 
 
     cpqtn.addEventListener('click',function(){
-      if(promptd.innerText === 'Please enter the quantity!' || promptu.innerText === 'Please enter a positive integer!'){
+      if(promptd.innerText === 'Please enter the quantity between 1 and 100!'){
         promptu.style.visibility = 'hidden';
       }
       
     });
 
     cstard.addEventListener('click',function(){
-      if(promptd.innerText === 'Please enter the start date!' || promptd.innerText === 'Please enter a date after today!'){
+      if(promptd.innerText === 'Please enter the start date!'){
         promptu.style.visibility = 'hidden';
       }
       
     });
 
     cendd.addEventListener('click',function(){
-      if(promptd.innerText === 'Please enter the end date!' || promptd.innerText === 'End date should be after the start date!'){
+      if(promptd.innerText === 'Please enter the end date!'){
         promptu.style.visibility = 'hidden';
       }
       
@@ -117,17 +187,17 @@ const items = [];
       let dur = getDaysBetween(stard.value, endd.value);
       const dateS = new Date(stard.value);
 
-      if(pqtn.value === '') {
-        promptu.innerHTML = 'Please enter the quantity!';
+      if(pqtn.value === ''){
+        pqtn.value = 1;
+      }
+
+      if((+pqtn.value)<=0 ||(+pqtn.value)>100 ) {
+        promptu.innerHTML = 'Please enter the quantity between 1 and 100!';
         promptu.style.visibility = 'visible';
         return;
       }
 
-      if(+pqtn.value <=0) {
-        promptu.innerHTML = 'Please enter a positive integer!';
-        promptu.style.visibility = 'visible';
-        return;
-      }
+    
 
       if(stard.value === '') {
         promptu.innerHTML = 'Please enter the start date!';
@@ -135,11 +205,11 @@ const items = [];
         return;
       }
 
-      if((today-dateS)>=0) {
-        promptu.innerHTML = 'Please enter a date after today!';
-        promptu.style.visibility = 'visible';
-        return;
-      }
+      // if((today-dateS)>=0) {
+      //   promptu.innerHTML = 'Please enter a date after today!';
+      //   promptu.style.visibility = 'visible';
+      //   return;
+      // }
 
 
       if(endd.value === '') {
@@ -148,11 +218,11 @@ const items = [];
         return;
       }
 
-      if(dur<=0) {
-        promptu.innerHTML = 'End date should be after the start date!';
-        promptu.style.visibility = 'visible';
-        return;
-      }
+      // if(dur<=0) {
+      //   promptu.innerHTML = 'End date should be after the start date!';
+      //   promptu.style.visibility = 'visible';
+      //   return;
+      // }
 
       const obj = {
         pid: items.length+1,
@@ -166,6 +236,7 @@ const items = [];
 
       
      items.push(obj);
+     localStorage.setItem('reservation_list', JSON.stringify(items));
      res.reset();
      render();
     });
@@ -180,17 +251,16 @@ const items = [];
     let dur = getDaysBetween(cstard.value, cendd.value);
     const dateS = new Date(cstard.value);
 
-    if(cpqtn.value === '') {
-        promptd.innerHTML = 'Please enter the quantity!';
-        promptd.style.visibility = 'visible';
-        return;
-      }
+    if(cpqtn.value === ''){
+      cpqtn.value = 1;
+    }
 
-      if(+cpqtn.value <=0) {
-        promptd.innerHTML = 'Please enter a positive integer!';
-        promptd.style.visibility = 'visible';
-        return;
-      }
+    if((+cpqtn.value)<=0 ||(+cpqtn.value)>100 ) {
+      promptu.innerHTML = 'Please enter the quantity between 1 and 100!';
+      promptu.style.visibility = 'visible';
+      return;
+    }
+
 
       if(cstard.value === '') {
         promptd.innerHTML = 'Please enter the start date!';
@@ -198,11 +268,11 @@ const items = [];
         return;
       }
 
-      if((today-dateS)>=0) {
-        promptd.innerHTML = 'Please enter a date after today!';
-        promptd.style.visibility = 'visible';
-        return;
-      }
+      // if((today-dateS)>=0) {
+      //   promptd.innerHTML = 'Please enter a date after today!';
+      //   promptd.style.visibility = 'visible';
+      //   return;
+      // }
 
 
       if(cendd.value === '') {
@@ -211,11 +281,11 @@ const items = [];
         return;
       }
 
-      if(dur<=0) {
-        promptd.innerHTML = 'End date should be after the start date!';
-        promptd.style.visibility = 'visible';
-        return;
-      }
+      // if(dur<=0) {
+      //   promptd.innerHTML = 'End date should be after the start date!';
+      //   promptd.style.visibility = 'visible';
+      //   return;
+      // }
 
 
 
@@ -232,7 +302,7 @@ const items = [];
 
 
     items.push(obj);
-    
+    localStorage.setItem('reservation_list', JSON.stringify(items));
     res.reset();
     render();
 
@@ -243,9 +313,9 @@ const items = [];
       let estotal = 0;
       let estotalsh;
 
-      localStorage.setItem('reservation_list', JSON.stringify(items));
+      
 
-      if(items.length===1){
+      if(items.length>=1){
         empty.style.display = 'none';
         iList.style.display = 'block';
       
@@ -293,7 +363,7 @@ const items = [];
         `;
 
         iList.appendChild(tr);
-        estotal = (+estotal) + (+items[i].pprice);
+        estotal = ((+estotal) + (+items[i].pprice)).toFixed(2);
         localStorage.setItem('estimated_total', estotal);
         estotalsh = estotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
@@ -318,6 +388,8 @@ const items = [];
       
     }
 
+    render();
+
     function getDaysBetween(date1, date2) {
       let time1 = new Date(date1).getTime();
       let time2 = new Date(date2).getTime();
@@ -329,6 +401,7 @@ const items = [];
       e.preventDefault();
       if (e.target.tagName === 'A') {
         items.splice(e.target.dataset.id, 1);
+        localStorage.setItem('reservation_list', JSON.stringify(items));
         if(items.length === 0){
           localStorage.setItem('estimated_total', 0);
         }
@@ -348,20 +421,27 @@ const items = [];
 
       else {
         const sub = document.querySelector('.iList div input');
-      diabg.style.display='block';
-      dia.style.display='block';
+      // diabg.style.display='block';
+      // dia.style.display='block';
+      $(".diabg").show();
+      $(".dia").show();
+
       login.addEventListener('click',function(e){
+
         e.preventDefault();
-        diabg.style.display='none';
-        dia.style.display = 'none';
+        $(".diabg").hide();
+        $(".dia").hide();
         openLoginModal();
+
       });
       guest.addEventListener('click', function(e){
-        diabg.style.display='none';
-        dia.style.display = 'none';
+
+        $(".diabg").hide();
+        $(".dia").hide();
         e.preventDefault();
         iList.removeEventListener('click', del);
         sub.click();
+        
       });
       }
 
@@ -370,6 +450,10 @@ const items = [];
 
     close.addEventListener('click', function(e){
       e.preventDefault();
-      diabg.style.display='none';
-      dia.style.display = 'none';
+    //  diabg.style.display='none';
+    //  dia.style.display = 'none';
+    
+      $(".diabg").hide();
+      $(".dia").hide();
+
     });
