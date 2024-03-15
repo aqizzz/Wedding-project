@@ -78,7 +78,10 @@ function loadWeddingData() {
                 });
                 if (!filteredData.length == 0) {
                     weddingDetails = filteredData[0];
+                    $( "#wedding" ).show();   
                     getWeddingDetails();
+                } else {
+                    $( "#wedding" ).hide(); 
                 }
             }
         }
@@ -118,39 +121,39 @@ function loadOrderData() {
  * retrieves and prints the user's personal information into their respective input boxes from the array.
  */
 function getPersonalInfo() {
-    document.getElementById('fullName').value = clientInfo.fullName;
-    document.getElementById('phoneNumber').value = clientInfo.phoneNumber;
-    document.getElementById('emailAddress').value = clientInfo.emailAddress;
-    document.getElementById('street').value = clientInfo.street;
-    document.getElementById('city').value = clientInfo.city;
-    document.getElementById('province').value = clientInfo.province;
-    document.getElementById('postalCode').value = clientInfo.postalCode;
+    $("#fullName").val(clientInfo.fullName);
+    $('#phoneNumber').val(clientInfo.phoneNumber);
+    $('#emailAddress').val(clientInfo.emailAddress);
+    $('#street').val(clientInfo.street);
+    $('#city').val(clientInfo.city);
+    $('#province').val(clientInfo.province);
+    $('#postalCode').val(clientInfo.postalCode);
 }
 
 /**
  * populate edit modal information
  */
 function editInfo() {
-    document.getElementById('fullNameEdit').value = clientInfo.fullName;
-    document.getElementById('phoneNumberEdit').value = clientInfo.phoneNumber;
-    document.getElementById('emailAddressEdit').value = clientInfo.emailAddress;
-    document.getElementById('streetEdit').value = clientInfo.street;
-    document.getElementById('cityEdit').value = clientInfo.city;
-    document.getElementById('provinceEdit').value = clientInfo.province;
-    document.getElementById('postalCodeEdit').value = clientInfo.postalCode;
+    $("#fullNameEdit").val(clientInfo.fullName);
+    $('#phoneNumberEdit').val(clientInfo.phoneNumber);
+    $('#emailAddressEdit').val(clientInfo.emailAddress);
+    $('#streetEdit').val(clientInfo.street);
+    $('#cityEdit').val(clientInfo.city);
+    $('#provinceEdit').val(clientInfo.province);
+    $('#postalCodeEdit').val(clientInfo.postalCode);
 }
 
 /**
  * update file with new client information
  */
 function updateInfo() {
-    clientInfo.fullName = document.getElementById('fullNameEdit').value;
-    clientInfo.phoneNumber = document.getElementById('phoneNumberEdit').value;
-    clientInfo.emailAddress = document.getElementById('emailAddressEdit').value;
-    clientInfo.street = document.getElementById('streetEdit').value;
-    clientInfo.city = document.getElementById('cityEdit').value;
-    clientInfo.province = document.getElementById('provinceEdit').value;
-    clientInfo.postalCode = document.getElementById('postalCodeEdit').value;
+    clientInfo.fullName = $("#fullNameEdit").val();
+    clientInfo.phoneNumber = $("#phoneNumberEdit").val();
+    clientInfo.emailAddress = $("#emailAddressEdit").val();
+    clientInfo.street = $("#streetEdit").val();
+    clientInfo.city = $("#cityEdit").val();
+    clientInfo.province = $("#provinceEdit").val();
+    clientInfo.postalCode = $("#postalCodeEdit").val();
     window.localStorage.removeItem(storageKey);
     window.localStorage.setItem(storageKey, JSON.stringify(clientInfo));
 }
@@ -164,7 +167,7 @@ function validateClientInfo() {
         'use strict'
       
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
+        const forms = $( ".needs-validation" )
       
         // Loop over them and prevent submission
         Array.from(forms).forEach(form => {
@@ -174,7 +177,7 @@ function validateClientInfo() {
               event.stopPropagation()
             }
             
-            form.classList.add('was-validated')
+            form.classList.add('was-validated');
             updateInfo();
           }, false)
         })
@@ -187,8 +190,7 @@ function validateClientInfo() {
  * and services required during their wedding.
  */
 function getWeddingDetails() {
-    setInterval('getCountdown()', 1000);     
-    document.getElementById('wedding').style.display = 'block';
+    setInterval('getCountdown()', 1000);  
     let weddingDateOnly = weddingDetails.weddingDate.substring(0, 11);
     let hourInWeddingDate = parseInt(weddingDetails.weddingDate.substring(11, 13));
     let minutesInWeddingDate = weddingDetails.weddingDate.substring(13, 16);
@@ -199,8 +201,8 @@ function getWeddingDetails() {
         }
         ampm = 'PM';
     }
-    document.getElementById('weddingDate').innerHTML = `${weddingDateOnly} ${hourInWeddingDate}${minutesInWeddingDate} ${ampm}`;
-    document.getElementById('servicesChosen').innerHTML = `${weddingDetails.servicesChosen}`;
+    $('#weddingDate').text(`${weddingDateOnly} ${hourInWeddingDate}${minutesInWeddingDate} ${ampm}`);
+    $('#servicesChosen').text(`${weddingDetails.servicesChosen}`);
 }
 
 /**
@@ -210,13 +212,13 @@ function getCountdown() {
     let currentDate = new Date();
     let weddingDate = new Date(weddingDetails.weddingDate);
     let numberOfDays = (weddingDate - currentDate) / (1000 *60 * 60 * 24);
-    document.getElementById('days').value = (numberOfDays < 10) ? '0' + Math.floor(numberOfDays) : Math.floor(numberOfDays);
+    $("#days").val(Math.floor(numberOfDays));
     let hours = (numberOfDays - Math.floor(numberOfDays)) * 24;
-    document.getElementById('hours').value = (hours < 10) ? '0' + Math.floor(hours) : Math.floor(hours);
+    $("#hours").val(Math.floor(hours).toString().padStart(2, '0'));
     let minutes = (hours - Math.floor(hours)) * 60;
-    document.getElementById('minutes').value = (minutes < 10) ? '0' + Math.floor(minutes) : Math.floor(minutes);
+    $("#minutes").val(Math.floor(minutes).toString().padStart(2, '0'));
     let seconds = (minutes - Math.floor(minutes)) * 60;
-    document.getElementById('seconds').value = (seconds < 10) ? '0' + Math.floor(seconds) : Math.floor(seconds);
+    $("#seconds").val(Math.floor(seconds).toString().padStart(2, '0'));
 }
 
 /**
@@ -262,7 +264,9 @@ function getOrderHistory() {
         HTMLCode += `<td>${totalPoints.toLocaleString('en-US')}</td></tr>`
         document.getElementById('history').innerHTML = HTMLCode;
     
-    } 
+    } else {
+        $("#historyDiv").hide();
+    }
 }
 
 

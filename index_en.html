@@ -18,6 +18,12 @@ File name: Home page
   <link rel="stylesheet" href="css/index_en_fr.css" >
   <script defer src="scripts/permission.js"></script>
   <script defer src="scripts/banner.js"></script>
+  <script>
+    'use strict';
+    fetch("https://api.adviceslip.com/advice")
+  .then((response) => response.json())
+  .then((json) => document.getElementById('advice').innerHTML = json.slip.advice);
+  </script>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon_io/favicon.ico">
@@ -71,6 +77,10 @@ File name: Home page
     </div>
   </div>
 
+  <div id="adviceDiv" style="text-align:center; margin-bottom: 30px;">
+    <h3>A Piece of Advice:</h3>
+    <h4 id="advice">&nbsp;</h4>
+  </div>
   <!-- carousel -->
   <div id="carouselExampleCaptions" class="carousel slide">
     <div class="carousel-indicators">
