@@ -14,88 +14,75 @@ function startup() {
 
     // via local storage 
     let obj = JSON.parse(localStorage.getItem('userInfo'));
+    
 
     // name
-    document.getElementById("name").value = obj.fullName; 
+    $('#name').val(obj.fullName) ;
     fillInfo("name");
 
     // email
-    document.getElementById("email").value = obj.emailAddress;
+    $("#email-input").val(obj.emailAddress);
     fillInfo("email");
 
     // phone
-    document.getElementById("phone").value = obj.phoneNumber;
+    $("#phone").val(obj.phoneNumber);
     fillInfo("phone");
 
     // address
-    document.getElementById("address").value = obj.street;
+    $("#address").val(obj.street) ;
     fillInfo("address");
 
     // state
-    if (obj.province== 'QC') {
-        document.getElementById("state").value = 'Quebec';
-    }else if (obj.province== 'AL'){
-        document.getElementById("state").value = 'Alberta';
-    }else if (obj.province== 'MA'){
-        document.getElementById("state").value = 'Manitoba';
-    }else if (obj.province== 'BC'){
-        document.getElementById("state").value = 'British Columbia';
-    }else if (obj.province== 'NB'){
-        document.getElementById("state").value = 'New Brunswick';
-    }else if (obj.province== 'NL'){
-        document.getElementById("state").value = 'Newfoundland and Labrador';
-    }else if (obj.province== 'NS'){
-        document.getElementById("state").value = 'Nova Scotia';
-    }else if (obj.province== 'ON'){
-        document.getElementById("state").value = 'Ontario';
-    }else if (obj.province== 'PE'){
-        document.getElementById("state").value = 'Prince Edward Island';
-    }else if (obj.province== 'SK'){
-        document.getElementById("state").value = 'Saskatchewan';
-    }else if (obj.province== 'NT'){
-        document.getElementById("state").value = 'Northwest Territories';
-    }else if (obj.province== 'NU'){
-        document.getElementById("state").value = 'Nunavut';
-    }else if (obj.province== 'YK'){
-        document.getElementById("state").value = 'Yukon';
-    }else {
-        document.getElementById("state").value = '';
+    if (obj.province== 'QC') {$("#state").val('Quebec');
+    }else if (obj.province== 'AL'){$("#state").val( 'Alberta');
+    }else if (obj.province== 'MA'){$("#state").val('Manitoba');
+    }else if (obj.province== 'BC'){$("#state").val('British Columbia');
+    }else if (obj.province== 'NB'){$("#state").val('New Brunswick');
+    }else if (obj.province== 'NL'){$("#state").val('Newfoundland and Labrador');
+    }else if (obj.province== 'NS'){$("#state").val('Nova Scotia');
+    }else if (obj.province== 'ON'){$("#state").val('Ontario');
+    }else if (obj.province== 'PE'){$("#state").val('Prince Edward Island');
+    }else if (obj.province== 'SK'){$("#state").val('Saskatchewan');
+    }else if (obj.province== 'NT'){$("#state").val('Northwest Territories');
+    }else if (obj.province== 'NU'){$("#state").val('Nunavut');
+    }else if (obj.province== 'YK'){$("#state").val('Yukon');
+    }else {$("#state").val('');
     }
     fillInfo("state");
 
     // city
-    document.getElementById("city").value = obj.city;
+    $("#city").val(obj.city);
     fillInfo("city");
 
     // zip
-    document.getElementById("zip").value = obj.postalCode;
+    $("#zip").val(obj.postalCode);
     fillInfo("zip");
 
 
     let total_points = obj.totalPoint;
 
-    document.getElementById("amount").value = Number(localStorage.getItem('estimated_total'));
+    $("#amount").val(Number(localStorage.getItem('estimated_total')));
 
-    document.getElementById("customer-amount").innerHTML = '$ '+document.getElementById("amount").value+' CAD';
+    $("#customer-amount").text('$ '+$("#amount").val()+' CAD');
     
-    document.getElementById("points").value = Number(total_points);
+    $("#points").val(Number(total_points)) ;
     chooseLevel();
-    document.getElementById("customer-points").innerHTML = document.getElementById("points").value;
-    let newPoints = Math.floor(Number(document.getElementById("amount").value) /5);
-    document.getElementById("customer-newPoints").innerHTML = newPoints;
-    document.getElementById("customer-PointsAfterPayment").innerHTML = newPoints + Number(document.getElementById("points").value);
+    $("#customer-points").text($("#points").val()) ;
+    let newPoints = Math.floor(Number($("#amount").val()) /5);
+    $("#customer-newPoints").text(newPoints);
+    $("#customer-PointsAfterPayment").text(newPoints + Number($("#points").val())) ;
     
     
-    document.getElementById('form3').onsubmit = store();
+    $('#form3').onsubmit = store();
 
 }// end function startup
 
 function store() {
   let key = new Date(); 
     if (validateForm()) {
-        payment.points = Number(document.getElementById("customer-PointsAfterPayment").innerHTML);
+        payment.points = Number($("#customer-PointsAfterPayment").text());
 
-        JSON.parse(localStorage.setItem('userInfo').totalPoint) = Number(document.getElementById("customer-PointsAfterPayment").innerHTML);
+        JSON.parse(localStorage.setItem('userInfo').totalPoint) = Number($("#customer-PointsAfterPayment").text());
 
         window.localStorage.setItem(key, JSON.stringify(payment)); // converting object to string
     }
@@ -122,15 +109,13 @@ function today() {
 
 function sendEmailInvoice() { 
     if (validateForm()){
-        
-    document.getElementById("email-sent").innerHTML = 
-        "<br> The invoice was sent to your email";
+        $("#email-sent").text() = "<br> The invoice was sent to your email";
     }
 }
 
 function handleSubmit() {
     
-    const cust_amount = document.getElementById('estimated_total').value;
+    const cust_amount = $('#estimated_total').val();
     
     // set the estimated_total into the local storage 
     localStorage.setItem('Amount', cust_amount);
@@ -142,81 +127,80 @@ function handleSubmit() {
  */
 function validateForm() {
     
-   if (document.getElementById("name").value === "") {
+   if ($("#name").val() === "") {
     
-    window.alert('You must enter your name.');
-    document.getElementById("name").focus();
-    return false;
+        window.alert('You must enter your name.');
+        $("#name").focus();
+        return false;
     } 
-   else if (document.getElementById("email").value === "") {
+   else if ($("#email-input").val() === "") {
     
         window.alert('You must enter your email.');
-        document.getElementById("email").focus();
+        $("#email-input").focus();
         return false;
     }
-   else if (document.getElementById("phone").value === "") {
+   else if ($("#phone").val() === "") {
     
-    window.alert('You must enter your phone.');
-    document.getElementById("phone").focus();
-    return false;
+        window.alert('You must enter your phone.');
+        $("#phone").focus();
+        return false;
     }
-   else if (document.getElementById("address").value === "") {
+   else if ($("#address").val() === "") {
         
             window.alert('You must enter your address.');
-            document.getElementById("address").focus();
+            $("#address").focus();
             return false;
     }
-   else if (document.getElementById("state").value === "") {
+   else if ($("#state").val() === "") {
         
-    window.alert('You must enter your state.');
-    document.getElementById("state").focus();
-    return false;
+        window.alert('You must enter your state.');
+        $("#state").focus();
+        return false;
     }
-    else if (document.getElementById("city").value === "") {
+    else if ($("#city").val() === "") {
         
-    window.alert('You must enter your city.');
-    document.getElementById("city").focus();
-    return false;
+        window.alert('You must enter your city.');
+        $("#city").focus();
+        return false;
     }
-   else if (document.getElementById("zip").value === "") {
+   else if ($("#zip").val() === "") {
             
-                window.alert('You must enter your postal code.');
-                document.getElementById("zip").focus();
-                return false;
+        window.alert('You must enter your postal code.');
+        $("#zip").focus();
+        return false;
     }
-   else if (document.getElementById("cardNumber").value === "") {
+   else if ($("#cardNumber").val() === "") {
                 
-                    window.alert('You must enter your card number.');
-                    document.getElementById("cardNumber").focus();
-                    return false;
+        window.alert('You must enter your card number.');
+        $("#cardNumber").focus();
+        return false;
     }
-    else if (document.getElementById("nameOnCard").value === "") {
+    else if ($("#nameOnCard").val() === "") {
                     
-                        window.alert('You must enter your name on card.');
-                        document.getElementById("nameOnCard").focus();
-                        return false;
+        window.alert('You must enter your name on card.');
+        $("#nameOnCard").focus();
+        return false;
     }
-    else if (document.getElementById("cvc").value === "") {
+    else if ($("#cvc").val() === "") {
                         
-                            window.alert('You must enter your card CVC / CVV.');
-                            document.getElementById("cvc").focus();
-                            return false;
+        window.alert('You must enter your card CVC / CVV.');
+        $("#cvc").focus();
+        return false;
     }
-    else if (document.getElementById("expiryM").value === "") {
+    else if ($("#expiryM").val() === "") {
                             
-                                window.alert('You must enter your card expiry month');
-                                document.getElementById("expiryM").focus();
-                                return false;
+        window.alert('You must enter your card expiry month');
+        $("#expiryM").focus();
+        return false;
     }
-    else if (document.getElementById("expiryY").value === "") {
+    else if ($("#expiryY").val() === "") {
                                 
-         window.alert('You must enter your card expiry year');
-         document.getElementById("expiryY").focus();
-         return false;                                                      
+        window.alert('You must enter your card expiry year');
+        $("#expiryY").focus();
+        return false;                                                      
     }
 
-    document.getElementById("PaymentPaid").innerHTML = 
-            "<br> Thank you  <br>Your payment has been processed <br>";
+    $("#PaymentPaid").text() = "<br> Thank you  <br>Your payment has been processed <br>";
     return true;
    
    }// end function validateForm
@@ -224,8 +208,8 @@ function validateForm() {
 function chooseLevel() {
     
     let levelImg='';
-    let hisPoints = document.getElementById('points').value;
-    let subTotal = Number(document.getElementById('amount').value) ;
+    let hisPoints = $('#points').val();
+    let subTotal = Number($('#amount').val()) ;
     let discount = 0;
 
     document.getElementById('level').innerHTML =" &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp";
@@ -250,10 +234,9 @@ function chooseLevel() {
                     +"<br>15% Discount = $" + (subTotal * discount).toFixed(2) + " CAD";
         document.getElementById('customer-discount').innerHTML = "15% Discount = $ " + (subTotal * discount).toFixed(2) + " CAD";
         
-                    subTotal = subTotal - (subTotal * discount);
+        subTotal -= (subTotal * discount);
     }else{
         document.getElementById('customer-discount').innerHTML = "";
-        
     };
 
     let tax = subTotal * 0.05;
@@ -268,7 +251,7 @@ function chooseLevel() {
 
 }// end chooseLevel
 
-const dialog = document.getElementById("myDialog");
+const dialog = $("#myDialog");
 
 let payment = {
         date: "",
@@ -293,76 +276,75 @@ function fillInfo(fieldName){
     payment.date = new Date();
 
     if (fieldName == "name"){
-        payment.custName = document.getElementById("name").value;
-        document.getElementById("customer-name").innerHTML = document.getElementById("name").value;
+        payment.custName = $("#name").val();
+        $("#customer-name").text($("#name").val()) ;
 
     }else  if (fieldName == "email"){
-        payment.email = document.getElementById("email").value;
-        document.getElementById("customer-email").innerHTML = document.getElementById("email").value;
+        payment.email = $("#email-input").val();
+        $("#customer-email").text($("#email-input").val()) ;
         
     }else  if (fieldName == "phone"){
-        payment.email = document.getElementById("phone").value;
-        document.getElementById("customer-phone").innerHTML = document.getElementById("phone").value;
+        payment.phone = $("#phone").val();
+        $("#customer-phone").text($("#phone").val());
 
     }else if (fieldName == "address"){
-        payment.country = document.getElementById("address").value;
-        document.getElementById("customer-address").innerHTML = document.getElementById("address").value;
+        payment.address = $("#address").val();
+        $("#customer-address").text($("#address").val());
     
     }else if (fieldName == "state"){
-        payment.country = document.getElementById("state").value;
-        document.getElementById("customer-state").innerHTML = document.getElementById("state").value;
-        
+        payment.state = $("#state").val();
+        $("#customer-state").text($("#state").val());
+    
     }else if (fieldName == "city"){
-        payment.country = document.getElementById("city").value;
-        document.getElementById("customer-city").innerHTML = document.getElementById("city").value;
-        
+        payment.city = $("#city").val();
+        $("#customer-city").text($("#city").val());
+    
     }else if (fieldName == "zip"){
-        payment.zip = document.getElementById("zip").value;
-        document.getElementById("customer-zip").innerHTML = document.getElementById("zip").value;
+        payment.zip = $("#zip").val();
+        $("#customer-zip").text($("#zip").val());
 
     }else if (fieldName == "amount"){
-        payment.amount = document.getElementById("amount").value;
-        document.getElementById("customer-amount").innerHTML = '$ '+document.getElementById("amount").value+' CAD';
-        document.getElementById("customer-newPoints").innerHTML = Math.floor(Number(document.getElementById("amount").value) /5);
+        payment.amount = $("#amount").val();
+        $("#customer-amount").text('$ '+ $("#amount").val()+' CAD') ;
+        $("#customer-newPoints").text(Math.floor(Number( $("#amount").val()) /5));
 
-        document.getElementById("customer-PointsAfterPayment").innerHTML = Number(document.getElementById("customer-newPoints").innerHTML) + Number(document.getElementById("points").value);
+        $("#customer-PointsAfterPayment").text(Number( $("#customer-newPoints").text()) + Number($("#points").val())) ;
 
-        
     }else if (fieldName == "points"){
-        payment.points = document.getElementById("points").value;
-        document.getElementById("customer-points").innerHTML = document.getElementById("points").value;
-        document.getElementById("customer-PointsAfterPayment").innerHTML = Number(document.getElementById("customer-newPoints").innerHTML) + Number(document.getElementById("points").value);
+        payment.points = $("#points").val();
+        $("#customer-points").text($("#points").val());
+        $("#customer-PointsAfterPayment").text(Number( $("#customer-newPoints").text()) + Number($("#points").val())) ;
 
         chooseLevel();
     
     }else if (fieldName == "cardNumber"){
-        payment.cardNumber = document.getElementById("cardNumber").value;
-        document.getElementById("customer-cardNumber").innerHTML = document.getElementById("cardNumber").value;
+        payment.cardNumber = $("#cardNumber").val();
+        $("#customer-cardNumber").text($("#cardNumber").val());
 
     }else if (fieldName == "nameOnCard"){
-        payment.nameOnCard = document.getElementById("nameOnCard").value;
-        document.getElementById("customer-nameOnCard").innerHTML = document.getElementById("nameOnCard").value;
+        payment.nameOnCard = $("#nameOnCard").val();
+        $("#customer-nameOnCard").text($("#nameOnCard").val());
 
     }else if (fieldName == "cvc"){
-        payment.cvc = document.getElementById("cvc").value;
-        document.getElementById("customer-cvc").innerHTML = document.getElementById("cvc").value;
+        payment.cvc = $("#cvc").val();
+        $("#customer-cvc").text($("#cvc").val());
 
     }else if (fieldName == "expiryM"){
-        payment.expiryM = document.getElementById("expiryM").value;
+        payment.expiryM = $("#expiryM").val() ;
 
-        if (document.getElementById("expiryM").value < 10) {
-            document.getElementById("customer-expiry").innerHTML = '0'+document.getElementById("expiryM").value + '/' +document.getElementById("expiryY").value ;
+        if ($("#expiryM").val() < 10) {
+            $("#customer-expiry").text('0'+ $("#expiryM").val() + '/' +$("#expiryY").val()) ;
         }else {
-            document.getElementById("customer-expiry").innerHTML = document.getElementById("expiryM").value + '/' +document.getElementById("expiryY").value ;
+           $("#customer-expiry").text($("#expiryM").val()+ '/' + $("#expiryY").val());
         }
             
     }else if (fieldName == "expiryY"){
-        payment.expiryY = document.getElementById("expiryY").value;
+        payment.expiryY = $("#expiryY").val() ;
         
-        if (document.getElementById("expiryM").value < 10) {
-            document.getElementById("customer-expiry").innerHTML = '0'+document.getElementById("expiryM").value + '/' +document.getElementById("expiryY").value ;
+        if ($("#expiryM").val() < 10) {
+            $("#customer-expiry").text('0'+ $("#expiryM").val() + '/' +$("#expiryY").val()) ;
         }else {
-            document.getElementById("customer-expiry").innerHTML = document.getElementById("expiryM").value + '/' +document.getElementById("expiryY").value ;
+            $("#customer-expiry").text($("#expiryM").val()+ '/' + $("#expiryY").val());
         }
     }
 }
