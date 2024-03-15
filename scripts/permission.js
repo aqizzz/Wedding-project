@@ -146,8 +146,43 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   try {
     if (!((username === "isabella123" && username === "john123" && username === "mary123") || password === "admin")) throw "Wrong username or password";
         window.localStorage.setItem("userName", username);
+        var clientInfo = {};
+        let storageKey = "userInfo";
+        /**
+         * loads client data from clients.json file
+         */
+        function loadClientData() {
+            let xhr = new XMLHttpRequest();
+            if (xhr) {
+                xhr.open("get", 'data/clients.json');
+
+                // passing data to the server
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        let json = xhr.responseText;
+                        const obj = JSON.parse(json);
+                        let filteredData = obj.filter(function(i) {
+                            return i.userName === username;
+                        });
+                        let storedData = window.localStorage.getItem(storageKey);
+                        if (storedData === null) {
+                            window.localStorage.setItem(storageKey, JSON.stringify(filteredData[0]));
+                            storedData = window.localStorage.getItem(storageKey);
+                        }
+                        clientInfo = JSON.parse(storedData);
+                        getPersonalInfo();
+                    }
+                }
+                xhr.send();
+            }
+        }
+
         if (window.location.pathname === "/reservation.html") {
-          window.location.href = "check_out.html";
+          loadClientData();
+          setTimeout(function() {
+            window.location.href = "check_out.html";
+          }, 0);
+          
         }else{
           window.location.href = profilePage;
         }
@@ -183,7 +218,7 @@ document.getElementById("register-form").addEventListener("submit", function(eve
 function logOut() {
   window.localStorage.removeItem("userName");
   window.localStorage.removeItem("userInfo");
-  if (window.location.pathname === "/user_profile.html") {
+  if (window.location.pathname === "/user_profile.html" || window.location.pathname === "/check_out.html") {
     window.location.href = "index_en.html";
   }else{
     window.location.reload();
