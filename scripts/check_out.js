@@ -201,8 +201,7 @@ function validateForm() {
         return false;                                                      
     }
 
-    $("#PaymentPaid").text() = "<br> Thank you  <br>Your payment has been processed <br>";
-    return true;
+    $("#PaymentPaid").html("<br> Thank you  <br>Your payment has been processed <br>");
    
    }// end function validateForm
 
