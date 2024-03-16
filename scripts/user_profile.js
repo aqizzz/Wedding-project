@@ -7,6 +7,7 @@ would have to go through appointment with us. After discussion about
 prices, the admin would add the wedding points to the user current points.
 Order history would be on a new window.*/
 
+'use strict';
 const DIAMOND = 100000;
 const GOLD = 50000;
 const SILVER = 25000;

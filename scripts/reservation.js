@@ -1,5 +1,5 @@
 
-    
+'use strict';
     
     const resData = localStorage.getItem('reservation_list');
     const items = resData ? JSON.parse(resData) : [];
