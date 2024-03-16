@@ -12,6 +12,10 @@ function startup() {
     document.getElementById('second').innerHTML=  today();
     document.getElementById('txtDateNow').value = today();
 
+    $("#amount").val(Number(localStorage.getItem('estimated_total')));
+
+    $("#customer-amount").text('$ '+$("#amount").val()+' CAD');
+
     // via local storage 
     let obj = JSON.parse(localStorage.getItem('userInfo'));
     
@@ -59,7 +63,6 @@ function startup() {
         fillInfo("zip");
 
         let total_points = obj.totalPoint;
-
         $("#points").val(Number(total_points)) ;
         chooseLevel();
         $("#customer-points").text($("#points").val()) ;
@@ -68,10 +71,6 @@ function startup() {
         $("#customer-PointsAfterPayment").text(newPoints + Number($("#points").val())) ;
 
     }
-
-    $("#amount").val(Number(localStorage.getItem('estimated_total')));
-
-    $("#customer-amount").text('$ '+$("#amount").val()+' CAD');
     
     $('#form3').onsubmit = store;
 
@@ -203,7 +202,7 @@ function validateForm() {
 
     $("#PaymentPaid").html("<br> Thank you  <br>Your payment has been processed <br>");
    
-   }// end function validateForm
+}// end function validateForm
 
 function chooseLevel() {
     
